@@ -85,7 +85,7 @@ const Header = () => {
         className="download-resume"
         onClick={downloadPdf}
         variant="text"
-        aria-label={t("download_resume")}
+        aria-label={t("aria.download_resume")}
         sx={{
           fontSize: { xs: "14px", sm: "16px" },
           padding: { xs: "8px 16px", sm: "12px 24px" },

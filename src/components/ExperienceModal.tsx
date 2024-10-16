@@ -15,7 +15,7 @@ import LinkIcon from "@mui/icons-material/Link";
 
 interface ExperienceModalProps {
   detailsOpen: boolean;
-  experience: experienceInterface;
+  experience: experienceInterface | null;
   handleDetailsClose: () => void;
 }
 
@@ -27,6 +27,8 @@ const ExperienceModal = ({
   const { t } = useTranslation();
   const [videoOpen, setVideoOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  if (!experience) return null;
 
   const handleVideoOpen = () => {
     setVideoOpen(true);
@@ -114,6 +116,7 @@ const ExperienceModal = ({
               onClick={handleVideoOpen}
               aria-label={t("aria.preview_video")}
               color="primary"
+              data-testid="preview_video"
             >
               <PreviewIcon />
             </IconButton>
@@ -144,13 +147,16 @@ const ExperienceModal = ({
         aria-describedby="video-description"
       >
         <DialogContent className="modal">
-          <video width="100%" height="500" controls>
+          <video width="100%" height="500" controls muted playsInline data-testid="video">
             <source src={experience.preview || undefined} type="video/mp4" />
             {t("unsupported")}
           </video>
-          {/* TODO: <Typography variant="caption" id="video-description">
-            {t("video_description")}
-          </Typography> */}
+          <Typography
+            variant="caption"
+            id={`${experience.title}-video-description`}
+          >
+            {experience.details}
+          </Typography>
         </DialogContent>
       </Dialog>
     </>

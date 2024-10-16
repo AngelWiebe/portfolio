@@ -1,33 +1,16 @@
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect, useRef } from "react";
 
 import experienceInterface from "../types/experience";
-import ExperienceModal from "./ExperienceModal";
 
 interface ExperienceProps {
   experience: experienceInterface;
+  onClick: () => void;
 }
 
-const Experience = ({ experience }: ExperienceProps) => {
+const Experience = ({ experience, onClick }: ExperienceProps) => {
   const { t } = useTranslation();
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
-
-  const handleDetailsOpen = () => {
-    setDetailsOpen(true);
-  };
-
-  const handleDetailsClose = () => {
-    setDetailsOpen(false);
-  };
-
-  useEffect(() => {
-    if (detailsOpen && dialogRef.current) {
-      dialogRef.current.focus();
-    }
-  }, [detailsOpen]);
 
   return (
     <>
@@ -36,8 +19,8 @@ const Experience = ({ experience }: ExperienceProps) => {
         role="article"
         aria-labelledby={`${experience.title}-header`}
         className={experience.type === "job" ? "blue" : "pink"}
-        onClick={handleDetailsOpen}
         style={{ cursor: "pointer" }}
+        onClick={onClick}
       >
         <CardHeader
           title={
@@ -53,7 +36,7 @@ const Experience = ({ experience }: ExperienceProps) => {
         />
         <CardContent>
           {experience.company && (
-            <Typography>
+            <Typography data-testid="company">
               <Box component="span" fontWeight="bold">
                 {t("company")}
               </Box>
@@ -61,7 +44,7 @@ const Experience = ({ experience }: ExperienceProps) => {
             </Typography>
           )}
 
-          <Typography>
+          <Typography data-testid="timeline">
             <Box component="span" fontWeight="bold">
               {t("timeline")}
             </Box>
@@ -71,7 +54,7 @@ const Experience = ({ experience }: ExperienceProps) => {
           <Typography>{experience.details.substring(0, 50)}...</Typography>
 
           {experience.tech_stack && (
-            <Typography>
+            <Typography data-testid="tech_stack">
               <Box component="span" fontWeight="bold">
                 {t("tech_stack")}
               </Box>
@@ -80,12 +63,6 @@ const Experience = ({ experience }: ExperienceProps) => {
           )}
         </CardContent>
       </Card>
-
-      <ExperienceModal
-        experience={experience}
-        detailsOpen={detailsOpen}
-        handleDetailsClose={handleDetailsClose}
-      />
     </>
   );
 };

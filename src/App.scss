@@ -4,10 +4,23 @@ $pink: #ff44aa;
 $yellow: #FFFF00;
 $purple: #5c4d9d;
 
+$white-shadow: whitesmoke;
+$shadow-light: rgba(0, 0, 0, 0.3);
+
+$neon-glow: 0 0 2px $white-shadow, 
+             0 0 5px rgba(255, 255, 255, 0.7),
+             0 0 10px rgba(255, 255, 255, 0.8),
+             0 0 20px rgba(0, 255, 255, 0.8),
+             0 0 40px rgba(0, 100, 255, 0.9),
+             0 0 50px rgba(0, 100, 255, 1), 
+             0 0 60px rgba(0, 0, 255, 1);
+
+$transition-ease: 0.3s ease;
+
 body {
   background-color: $baseColor;
   font-family: 'Press Start 2P; cursive';
-  color: whitesmoke;
+  color: $white-shadow;
   margin: 0;
   padding: 0;
 }
@@ -32,14 +45,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 
-    0 0 2px whitesmoke,      
-    0 0 5px rgba(255, 255, 255, 0.7),
-    0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(0, 255, 255, 0.8), 
-    0 0 40px rgba(0, 100, 255, 0.9),
-    0 0 50px rgba(0, 100, 255, 1), 
-    0 0 60px rgba(0, 0, 255, 1); 
+  text-shadow: $neon-glow;
 
   filter: blur(0.01px);
 }
@@ -55,7 +61,7 @@ body {
 
 header {
   padding: 10px 20px;
-  color: whitesmoke;
+  color: $white-shadow;
   height: 40px;
   display: flex;
   background-color: $baseColor;
@@ -79,7 +85,7 @@ header {
     gap: 20px;
 
     a {
-      color: whitesmoke;
+      color: $white-shadow;
       font-size: 1.6rem;
       transition: transform 0.3s;
 
@@ -112,7 +118,7 @@ header {
 
     button {
       background-color: $pink;
-      color: whitesmoke;
+      color: $white-shadow;
       font-family: 'Orbitron', sans-serif;
       padding: 5px 10px;
       border: none;
@@ -148,8 +154,8 @@ div.MuiCard-root {
   background-color: $baseColor;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px $shadow-light;
+  transition: transform $transition-ease, box-shadow $transition-ease;
 
   &.blue {
       box-shadow: 0 8px 16px rgba(0, 100, 255, 0.6), 0 4px 8px rgba(0, 100, 255, 0.4);
@@ -165,14 +171,14 @@ div.MuiCard-root {
   
   .title.MuiTypography-root {
       font-size: 24px;
-      color: whitesmoke;
+      color: $white-shadow;
       margin-bottom: 10px;
   }
 
   .MuiCardContent-root {
     font-size: 1rem;
     line-height: 1.5;
-    color: whitesmoke;
+    color: $white-shadow;
     margin-bottom: 10px;
     padding: 0 10px;
 
@@ -180,14 +186,14 @@ div.MuiCard-root {
       font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 5px;
-      color: whitesmoke;
+      color: $white-shadow;
     };
   }
 
   .MuiIconButton-root {
     color: $yellow;
     font-size: 40px;
-    transition: 'color 0.3s ease; transform 0.3s ease';
+    transition: 'color ${0.3s ease; transform 0.3s ease';
     &:hover {
       transform: scale(1.2);
     }
@@ -245,7 +251,7 @@ button.slick-arrow {
             margin-top: 5px;
 
             .MuiSvgIcon-root{
-              color: whitesmoke;
+              color: $white-shadow;
               font-size: 1.6rem;
               transition: transform 0.3s;
         
@@ -287,7 +293,7 @@ button.slick-arrow {
 .MuiCard-root {
   max-height: 300px; 
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform $transition-ease;
 
   &:hover {
     transform: scale(1.05); 
@@ -323,12 +329,12 @@ button.slick-arrow {
   .MuiDialogContent-root {
     background-color: $baseColor;
     padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform $transition-ease, box-shadow $transition-ease;
   }
 
   .MuiIconButton-root {
     color: $pink;
-    transition: color 0.3s ease;
+    transition: color $transition-ease;
 
     &:hover {
       color: #a65e83;
@@ -344,7 +350,7 @@ button.slick-arrow {
   .MuiTypography-root {
     margin-bottom: 15px;
     line-height: 1.6;
-    color: whitesmoke;
+    color: $white-shadow;
   }
 }
 
@@ -352,16 +358,20 @@ footer {
   background-color: rgba(31, 15, 25, 255);
   padding: 20px;
   text-align: center;
-  color: whitesmoke;
+  color: $white-shadow;
   flex-direction: row;
   margin-top: 30px;
 
-  .community-list {
+  .skill-list {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80vw;
+    width: 90%;
     margin-top: 0 !important;
+
+    .skill-item {
+      margin-left: 5px;
+    }
   }
 }
 
@@ -470,8 +480,8 @@ footer {
 
   footer {
     padding: 10px;
-    .community-list {
-      flex-direction: column;
+    .skill-list {
+      flex-wrap: wrap;
       gap: 10px;
       width: 100%;
     }

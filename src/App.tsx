@@ -3,12 +3,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Typography, Stack } from "@mui/material";
+import { useState } from "react";
 
 import "./App.scss";
 import background from "./assets/background.jpg";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import ExperienceModal from "./components/ExperienceModal";
+import experienceInterface from "./types/experience";
 
 const backgroundStyle = {
   backgroundImage: `url(${background})`,
@@ -17,12 +20,22 @@ const backgroundStyle = {
 
 function App() {
   const { t } = useTranslation();
+  const [selectedExperience, setSelectedExperience] =
+    useState<experienceInterface | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const experienceList = t("cards", { returnObjects: true });
   const experienceArray = Array.isArray(experienceList) ? experienceList : [];
 
-  // const skillsList = t("description.skill", { returnObjects: true });
-  // const skillsArray = Array.isArray(skillsList) ? skillsList : [];
+  const handleOpenDetails = (experience: experienceInterface) => {
+    setSelectedExperience(experience);
+    setDetailsOpen(true);
+  };
+
+  const handleDetailsClose = () => {
+    setDetailsOpen(false);
+    setSelectedExperience(null);
+  };
 
   const settings = {
     dots: true,
@@ -54,10 +67,15 @@ function App() {
             aria-live="polite"
             className="hide-on-mobile neon-text"
             variant="h3"
+            data-testid="description_name"
           >
             {t("description.name")}
           </Typography>
-          <Typography className="bio" aria-live="polite">
+          <Typography
+            className="bio"
+            data-testid="description_bio"
+            aria-live="polite"
+          >
             {t("description.bio")}
           </Typography>
         </Stack>
@@ -69,13 +87,24 @@ function App() {
             {...settings}
             className="slider-wrapper"
             aria-label="Experience Slider"
+            data-testid="experience_slider"
           >
             {experienceArray.map((experience, index) => (
-              <Experience experience={experience} key={index} />
+              <Experience
+                key={index}
+                experience={experience}
+                onClick={() => handleOpenDetails(experience)}
+              />
             ))}
           </Slider>
         </section>
       </main>
+
+      <ExperienceModal
+        experience={selectedExperience}
+        detailsOpen={detailsOpen}
+        handleDetailsClose={handleDetailsClose}
+      />
 
       <footer className="footer" role="contentinfo">
         <Footer />
