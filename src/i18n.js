@@ -1,6 +1,6 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import { initReactI18next } from "react-i18next";
 
 i18n
   // detect user language
@@ -41,7 +41,7 @@ i18n
               "Docker",
               "Azure DevOps",
             ],
-            bio: "I am Angel Wiebe, a dedicated software developer with over 8 years of experience, specializing in front-end technologies while continuously expanding my skills in back-end development. I hold a diploma in Software & Database Development from Robertson Career College, where I graduated with academic excellence. My tech stack includes JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker, and Azure DevOps, among others. I am passionate about creating innovative solutions and delivering high-quality code, eager to contribute my expertise to exciting projects.",
+            bio: "I am Angel Wiebe, a dedicated software developer with over 9 years of experience, specializing in front-end technologies while continuously expanding my skills in back-end development. I hold a diploma in Software & Database Development from Robertson Career College, where I graduated with academic excellence. My tech stack includes JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker, and Azure DevOps, among others. I am passionate about creating innovative solutions and delivering high-quality code, eager to contribute my expertise to exciting projects.",
           },
           aria: {
             github_link: "Visit my GitHub profile",
@@ -203,7 +203,7 @@ i18n
               "Docker",
               "Azure DevOps",
             ],
-            bio: "Je suis Angel Wiebe, une développeuse de logiciels dévouée avec plus de 8 ans d'expérience, spécialisé dans les technologies front-end tout en continuant à développer mes compétences en back-end. Je possède un diplôme en développement de logiciels et de bases de données de Robertson Career College, où j'ai obtenue mon diplôme avec excellence académique. Mon ensemble de compétences techniques comprend JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker et Azure DevOps, parmi d'autres. Je suis passionnée par la création de solutions innovantes et la livraison d'un code de haute qualité, désireuse de contribuer mon expertise à des projets passionnants.",
+            bio: "Je suis Angel Wiebe, une développeuse de logiciels dévouée avec plus de 9 ans d'expérience, spécialisé dans les technologies front-end tout en continuant à développer mes compétences en back-end. Je possède un diplôme en développement de logiciels et de bases de données de Robertson Career College, où j'ai obtenue mon diplôme avec excellence académique. Mon ensemble de compétences techniques comprend JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker et Azure DevOps, parmi d'autres. Je suis passionnée par la création de solutions innovantes et la livraison d'un code de haute qualité, désireuse de contribuer mon expertise à des projets passionnants.",
           },
           aria: {
             github_link: "Visitez mon profil GitHub",

@@ -1,8 +1,8 @@
-import { Stack, IconButton, Button, useTheme } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
-import { useTranslation, Trans } from "react-i18next";
+import { Button, IconButton, Stack, useTheme } from "@mui/material";
+import { Trans, useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -14,8 +14,8 @@ const Header = () => {
 
   const downloadPdf = () => {
     const link = document.createElement("a");
-    const enPdf = "./src/assets/Resume2024.pdf";
-    const frPdf = "./src/assets/ResumeFR2024.pdf";
+    const enPdf = "./src/assets/Resume2025.pdf";
+    const frPdf = "./src/assets/ResumeFR2025.pdf";
 
     const pdfToDownload = i18n.language === "fr" ? frPdf : enPdf;
     link.href = pdfToDownload;
