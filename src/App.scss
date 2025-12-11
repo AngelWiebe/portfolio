@@ -1,28 +1,58 @@
-$baseColor: rgba(41,20,34,255);
-$blue: #00e0ff;
-$pink: #ff44aa;
-$yellow: #FFFF00;
-$purple: #5c4d9d;
+// Professional Color Palette
+$baseColor: #0a0e27;
+$surface: #141b2d;
+$surface-elevated: #1a2332;
+$border: #2a3441;
 
-$white-shadow: whitesmoke;
-$shadow-light: rgba(0, 0, 0, 0.3);
+$primary: #4f46e5;
+$primary-hover: #6366f1;
+$primary-light: #818cf8;
+$accent: #ec4899;
+$accent-hover: #f472b6;
 
-$neon-glow: 0 0 2px $white-shadow, 
-             0 0 5px rgba(255, 255, 255, 0.7),
-             0 0 10px rgba(255, 255, 255, 0.8),
-             0 0 20px rgba(0, 255, 255, 0.8),
-             0 0 40px rgba(0, 100, 255, 0.9),
-             0 0 50px rgba(0, 100, 255, 1), 
-             0 0 60px rgba(0, 0, 255, 1);
+$text-primary: #f8fafc;
+$text-secondary: #cbd5e1;
+$text-muted: #94a3b8;
 
-$transition-ease: 0.3s ease;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+$transition-ease: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
 body {
   background-color: $baseColor;
-  font-family: 'Press Start 2P; cursive';
-  color: $white-shadow;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: $text-primary;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+[role="application"] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  main[role="main"] {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
 }
 
 .visually-hidden {
@@ -34,47 +64,40 @@ body {
 }
 
 .neon-text {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 4rem;
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  color: #fff;
-
-  background: linear-gradient(90deg, $pink, $blue);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $text-primary;
+  background: linear-gradient(135deg, $primary-light 0%, $accent 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  text-shadow: $neon-glow;
-
-  filter: blur(0.01px);
-}
-
-@keyframes shift-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+  margin-bottom: 1rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 header {
-  padding: 10px 20px;
-  color: $white-shadow;
-  height: 40px;
+  padding: 0.1rem 1rem;
+  color: $text-primary;
   display: flex;
-  background-color: $baseColor;
+  background-color: rgba($surface, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
-  .location {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, $pink, $blue);
-    -webkit-background-clip: text;
+  .name {
+    font-size: 2rem;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    color: $text-primary;
+    background: linear-gradient(135deg, $primary-light 0%, $accent 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientShift 5s ease infinite;
+    animation: fadeIn 0.8s ease-out;
   }
 
   .social-icons {
@@ -82,53 +105,79 @@ header {
     justify-content: center;
     flex-direction: row;
     margin-top: 0 !important;
-    gap: 20px;
+    gap: 12px;
 
     a {
-      color: $white-shadow;
-      font-size: 1.6rem;
-      transition: transform 0.3s;
+      color: $text-secondary;
+      font-size: 1.5rem;
+      transition: all $transition-fast;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
 
       &:hover {
-        color: $blue;
+        color: $primary-light;
+        background-color: rgba($primary, 0.1);
+        transform: translateY(-2px);
       }
     }
   }
 
   button.download-resume {
-    color: $pink;
-    font-family: 'Orbitron', sans-serif;
-    padding: 10px 20px;
+    color: $text-primary;
+    padding: 0.5rem 1rem;
     margin-top: 0 !important;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: $primary;
+    border: 1px solid rgba($primary, 0.3);
+    transition: all $transition-fast;
+    white-space: nowrap;
 
     &:hover {
-      color: $yellow;
-      background-color: inherit;
+      background-color: $primary-hover;
+      border-color: $primary-hover;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 
   .language-switcher {
-    gap: 10px;
+    gap: 8px;
     display: flex;
     margin-top: 0 !important;
 
     button {
-      background-color: $pink;
-      color: $white-shadow;
-      font-family: 'Orbitron', sans-serif;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 8px;
+      background-color: transparent;
+      color: $text-secondary;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid $border;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
-      transition: background-color 0.3s, box-shadow 0.3s;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all $transition-fast;
 
       &:hover {
-        box-shadow: 0 0 10px $pink, 0 0 20px $pink, 0 0 30px $pink;
+        background-color: $surface-elevated;
+        color: $text-primary;
+        border-color: $primary;
+      }
+
+      &.Mui-selected,
+      &[aria-pressed="true"] {
+        background-color: $primary;
+        color: $text-primary;
+        border-color: $primary;
       }
     }
   }
@@ -136,66 +185,163 @@ header {
 
 /* Main Content Styling */
 .main-content {
-  padding: 40px;
+  padding: 1rem 2rem;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($baseColor, 0.4) 0%,
+      rgba($baseColor, 0.6) 50%,
+      rgba($baseColor, 0.85) 100%
+    );
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .main-heading {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: $text-primary;
+    background: linear-gradient(135deg, $primary-light 0%, $accent 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .main-subheading {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    color: $text-secondary;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+  }
 
   .bio.MuiTypography-root {
-    border-radius: 10px;
-    font-weight: bold;
-    max-width: 200vh;
-    margin-top: 60vh;
-    background-color: rgba(31, 15, 25, 0.9);
-    padding: 10px;
+    border-radius: 12px;
+    font-weight: 400;
+    max-width: 800px;
+    background-color: rgba($surface-elevated, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    margin-left: 3rem;
+    line-height: 1.5;
+    color: $text-secondary;
+    border: 1px solid $border;
+    box-shadow: $shadow-lg;
+    font-size: 0.9rem;
   }
 }
 
 div.MuiCard-root {
-  background-color: $baseColor;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px $shadow-light;
-  transition: transform $transition-ease, box-shadow $transition-ease;
+  background-color: $surface-elevated;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: $shadow-md;
+  border: 1px solid $border;
+  transition: all $transition-ease;
 
   &.blue {
-      box-shadow: 0 8px 16px rgba(0, 100, 255, 0.6), 0 4px 8px rgba(0, 100, 255, 0.4);
+    border-left: 3px solid $primary;
+    box-shadow: $shadow-md, 0 0 0 1px rgba($primary, 0.1);
   }
 
   &.pink {
-      box-shadow: 0 8px 16px rgba(255, 0, 255, 0.6), 0 4px 8px rgba(255, 0, 255, 0.4);
+    border-left: 3px solid $accent;
+    box-shadow: $shadow-md, 0 0 0 1px rgba($accent, 0.1);
   }
 
   &:hover {
-    transform: scale(1.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: $shadow-xl, 
+                0 0 20px rgba($primary, 0.2),
+                0 0 40px rgba($primary, 0.1);
+    border-color: rgba($primary, 0.5);
+    background-color: rgba($surface-elevated, 0.98);
+
+    &.blue {
+      box-shadow: $shadow-xl,
+                  0 0 20px rgba($primary, 0.3),
+                  0 0 40px rgba($primary, 0.15);
+      border-color: rgba($primary, 0.6);
+    }
+
+    &.pink {
+      box-shadow: $shadow-xl,
+                  0 0 20px rgba($accent, 0.3),
+                  0 0 40px rgba($accent, 0.15);
+      border-color: rgba($accent, 0.6);
+    }
   }
   
   .title.MuiTypography-root {
-      font-size: 24px;
-      color: $white-shadow;
-      margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
 
   .MuiCardContent-root {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: $white-shadow;
-    margin-bottom: 10px;
-    padding: 0 10px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: $text-secondary;
+    margin-bottom: 0;
+    padding: 0;
 
     .MuiTypography-root {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 5px;
-      color: $white-shadow;
-    };
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+      color: $text-secondary;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .MuiIconButton-root {
-    color: $yellow;
-    font-size: 40px;
-    transition: 'color ${0.3s ease; transform 0.3s ease';
+    color: $primary-light;
+    font-size: 1.25rem;
+    transition: all $transition-fast;
+    
     &:hover {
-      transform: scale(1.2);
+      color: $primary;
+      transform: scale(1.1);
+      background-color: rgba($primary, 0.1);
     }
   }
 }
@@ -203,77 +349,129 @@ div.MuiCard-root {
 button.slick-arrow {
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  background-color: rgba($surface-elevated, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid $border;
+  color: $text-primary;
+  transition: all $transition-fast;
+  box-shadow: $shadow-md;
 
   &:hover {
-    background-color: $purple; 
+    background-color: $primary;
+    border-color: $primary;
+    transform: scale(1.05);
+    box-shadow: $shadow-lg;
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
   }
 }
 
 .experience {
+  padding: 0;
+  margin-top: 0.25rem;
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+
   .slider-wrapper {
     overflow: hidden;
-    max-height: 100vh;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
 
     .slick-slide {
       display: flex !important;
       justify-content: center;
       align-items: center;
-      height: 400px;
+      height: 240px;
+      padding: 0;
 
       .MuiCard-root {
-        width: 250px; 
-        height: 350px;
+        width: 220px;
+        height: 220px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         box-sizing: border-box; 
-        padding: 10px; 
+        margin: 0 auto;
+        overflow: hidden;
 
         &:focus {
-          outline: none;
+          outline: 2px solid $primary;
+          outline-offset: 4px;
         }
 
         .MuiCardHeader-root {
-          padding: 0 15px;
+          padding: 0;
+          flex-shrink: 0;
 
           .MuiCardHeader-action {
-            margin-top: 5px;
+            margin-top: 0;
 
-            .MuiSvgIcon-root{
-              color: $white-shadow;
-              font-size: 1.6rem;
-              transition: transform 0.3s;
+            .MuiSvgIcon-root {
+              color: $text-secondary;
+              font-size: 1.25rem;
+              transition: all $transition-fast;
         
               &:hover {
-                color: $blue;
+                color: $primary;
               }
             }
           }
+        }
+
+        .MuiCardContent-root {
+          flex: 1;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
         }
       }
     }
 
     .slick-list {
       padding: 0;
-      height: 100%; 
+      height: 240px;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
+    .slick-slide {
+      width: 220px;
+      min-width: 220px;
     }
 
     button.slick-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 10;
+      z-index: 20;
+      width: 40px;
+      height: 40px;
 
       &.slick-prev {
         left: 10px;
@@ -285,106 +483,152 @@ button.slick-arrow {
     }
 
     .slick-dots {
-      bottom: 0;
+      display: none !important;
     }
   }
 }
 
 .MuiCard-root {
-  max-height: 300px; 
   overflow: hidden;
-  transition: transform $transition-ease;
-
-  &:hover {
-    transform: scale(1.05); 
-  }
+  transition: all $transition-ease;
 }
 
 
 .modal {
+  .MuiDialog-paper {
+    background-color: $surface-elevated;
+    border: 1px solid $border;
+    border-radius: 16px;
+    box-shadow: $shadow-xl;
+  }
+
   h6.MuiTypography-root {
-    color: $blue; 
-    text-align: center;
+    color: $text-primary;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   &.blue {
     .MuiPaper-root {
-      box-shadow: 0 8px 16px rgba(0, 100, 255, 0.6), 0 -8px 16px rgba(130, 158, 199, 0.6), 
-      8px 0 16px rgba(0, 100, 255, 0.6), -8px 0 16px rgba(0, 100, 255, 0.6),
-      0 4px 8px rgba(0, 100, 255, 0.4), 0 -4px 8px rgba(0, 100, 255, 0.4), 
-      4px 0 8px rgba(0, 100, 255, 0.4), -4px 0 8px rgba(0, 100, 255, 0.4);
+      border-left: 4px solid $primary;
     }
   }
   
   &.pink {
     .MuiPaper-root {
-      box-shadow: 0 8px 16px rgba(255, 0, 255, 0.6), 0 -8px 16px rgba(255, 0, 255, 0.4), 
-            8px 0 16px rgba(255, 0, 255, 0.6), -8px 0 16px rgba(255, 0, 255, 0.4),
-            0 4px 8px rgba(255, 0, 255, 0.6), 0 -4px 8px rgba(255, 0, 255, 0.4), 
-            4px 0 8px rgba(255, 0, 255, 0.6), -4px 0 8px rgba(255, 0, 255, 0.4);
-
+      border-left: 4px solid $accent;
     }
   }
 
   .MuiDialogContent-root {
-    background-color: $baseColor;
-    padding: 20px;
-    transition: transform $transition-ease, box-shadow $transition-ease;
+    background-color: $surface-elevated;
+    padding: 2rem;
+    color: $text-primary;
   }
 
   .MuiIconButton-root {
-    color: $pink;
-    transition: color $transition-ease;
+    color: $text-secondary;
+    transition: all $transition-fast;
+    border-radius: 8px;
 
     &:hover {
-      color: #a65e83;
+      color: $primary;
+      background-color: rgba($primary, 0.1);
     }
   }
 
   video {
-    border-radius: 8px;
+    border-radius: 12px;
     max-width: 100%;
     height: auto;
+    box-shadow: $shadow-lg;
+    margin-bottom: 1rem;
   }
 
   .MuiTypography-root {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    color: $white-shadow;
-  }
-}
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: $text-secondary;
 
-footer {
-  background-color: rgba(31, 15, 25, 255);
-  padding: 20px;
-  text-align: center;
-  color: $white-shadow;
-  flex-direction: row;
-  margin-top: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-  .skill-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-    margin-top: 0 !important;
-
-    .skill-item {
-      margin-left: 5px;
+    span[style*="font-weight: bold"] {
+      color: $text-primary;
+      font-weight: 600;
+      margin-right: 0.5rem;
     }
   }
 }
 
-// Gradient animation for text
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+footer {
+  background-color: $surface;
+  padding: 0.75rem 2rem;
+  text-align: center;
+  color: $text-primary;
+  flex-direction: row;
+  border-top: 1px solid $border;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .MuiTypography-root {
+    color: $text-secondary;
+    font-weight: 500;
+    margin-right: 1rem;
+    font-size: 0.9rem;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .skill-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0 !important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .skill-item {
+      background-color: transparent;
+      color: $text-secondary;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 400;
+      border: none;
+      transition: all $transition-fast;
+      position: relative;
+
+      &::after {
+        content: ',';
+        margin-left: 0.125rem;
+      }
+
+      &:last-child::after {
+        content: '';
+      }
+
+      &:hover {
+        color: $primary-light;
+      }
+    }
   }
-  100% {
-    background-position: 0% 50%;
+}
+
+// Smooth fade-in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -397,93 +641,146 @@ footer {
   header {
     display: flex;
     height: auto;
-    padding: 0;
+    padding: 0.75rem 1rem;
 
     .MuiStack-root {
-      width: 45%;
-      flex: 45%;
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding: 10px;
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+      padding: 0;
 
-      .location, 
-      .social-icons, 
-      button.download-resume, 
-      .language-switcher {
-        width: 48%;
-
-        button {
-          height: fit-content;
-        }
+      &:first-of-type {
+        align-items: center;
+        gap: 0.5rem;
       }
 
-      .location, .social-icons {
-        order: 1;
-        font-size: 1rem;
-      }
-
-      button.download-resume, .language-switcher {
-        order: 2;
-        font-size: 1rem;
-        padding: 0;
-        width: fit-content;
+      .name {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 0;
       }
 
       .social-icons {
-        justify-content: end;
-        gap: 0;
-        padding: 0;
-        margin-bottom: 10px;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      button.download-resume {
+        width: 100%;
+        align-self: center;
+        max-width: 180px;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
       }
 
       .language-switcher {
-        justify-content: end;
+        justify-content: center;
+        gap: 0.5rem;
+
+        button {
+          padding: 0.375rem 0.625rem;
+          font-size: 0.75rem;
+          min-width: 44px;
+        }
       }
     }
   }  
 
   .main-content {
-    padding: 20px;
-    height: auto;
-    background-position: right;
+    padding: 1rem;
+    flex: 1;
 
-    .hide-on-mobile {
-      display: block;
+    .main-heading {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .main-subheading {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-bottom: 1rem;
     }
 
     .bio.MuiTypography-root {
-      margin-top: 20vh;
-      max-width: 100vw;
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+      max-width: 100%;
+      padding: 0.875rem;
+      font-size: 0.85rem;
+      margin-left: 0 !important;
     }
   }
 
   .experience {
-    .slider-wrapper {
-      height: auto;
-    }
+    margin-top: 0.25rem;
+    padding: 0;
 
-    .slick-arrow {
-      width: 40px;
-      height: 40px;
+    .slider-wrapper {
+      .slick-list {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .slick-slide {
+        height: 200px;
+        padding: 0;
+      }
+
+      .slick-slide .MuiCard-root {
+        width: 180px;
+        height: 180px;
+        padding: 0.75rem;
+      }
+
+      button.slick-arrow {
+        width: 32px;
+        height: 32px;
+
+        &.slick-prev {
+          left: 5px;
+        }
+
+        &.slick-next {
+          right: 5px;
+        }
+      }
+
+      .slick-dots {
+        display: none !important;
+      }
     }
   }
 
   .MuiCard-root {
-    padding: 15px;
-    font-size: 12px;
-  }
-
-  button.slick-arrow {
-    width: 40px;
-    height: 40px;
+    padding: 1.25rem;
+    font-size: 0.875rem;
   }
 
   footer {
-    padding: 10px;
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: auto;
+
+    .MuiTypography-root {
+      margin-right: 0;
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
     .skill-list {
-      flex-wrap: wrap;
-      gap: 10px;
+      justify-content: center;
+      gap: 0.25rem;
       width: 100%;
+      flex-wrap: wrap;
+
+      .skill-item {
+        padding: 0.125rem 0.375rem;
+        font-size: 0.75rem;
+      }
     }
   }
 }
