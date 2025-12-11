@@ -95,7 +95,12 @@ header {
     }
   }
 
-  button.download-resume {
+  .language-switcher {
+    gap: 10px;
+    display: flex;
+    margin-top: 0 !important;
+
+    button {
     color: $pink;
     font-family: 'Orbitron', sans-serif;
     padding: 10px 20px;
@@ -110,13 +115,9 @@ header {
       background-color: inherit;
     }
   }
+  }
 
-  .language-switcher {
-    gap: 10px;
-    display: flex;
-    margin-top: 0 !important;
-
-    button {
+  button.download-resume {
       background-color: $pink;
       color: $white-shadow;
       font-family: 'Orbitron', sans-serif;
@@ -126,11 +127,11 @@ header {
       cursor: pointer;
       font-size: 0.9rem;
       transition: background-color 0.3s, box-shadow 0.3s;
+      margin-top: 0 !important;
 
       &:hover {
         box-shadow: 0 0 10px $pink, 0 0 20px $pink, 0 0 30px $pink;
       }
-    }
   }
 }
 
