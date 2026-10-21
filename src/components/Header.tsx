@@ -14,8 +14,8 @@ const Header = () => {
 
   const downloadPdf = () => {
     const link = document.createElement("a");
-    const enPdf = "./src/assets/Resume2025.pdf";
-    const frPdf = "./src/assets/ResumeFR2025.pdf";
+    const enPdf = "./src/assets/Resume2026.pdf";
+    const frPdf = "./src/assets/ResumeFR2026.pdf";
 
     const pdfToDownload = i18n.language === "fr" ? frPdf : enPdf;
     link.href = pdfToDownload;
