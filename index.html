@@ -2,13 +2,94 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <title>Angel Wiebe</title>
+    <title>Angel Wiebe | Software Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Angel Wiebe is a software developer in Okotoks, Alberta. Explore web and game projects, full-stack experience, and résumés in English and French."
+    />
+    <link rel="canonical" href="https://angelwiebe.ca/" />
+    <link rel="icon" type="image/jpeg" href="/icon.jpg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://angelwiebe.ca/" />
+    <meta property="og:title" content="Angel Wiebe | Software Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore Angel Wiebe’s software development experience, web and game projects, and bilingual résumés."
+    />
+    <meta property="og:image" content="https://angelwiebe.ca/icon.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="619" />
+    <meta property="og:image:height" content="622" />
+    <meta property="og:image:alt" content="Neon atom illustration on a dark grid" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .portfolio-overview {
+        max-width: 45rem;
+        margin-inline: auto;
+        padding: 1.5rem;
+        font: 1rem / 1.6 system-ui, sans-serif;
+      }
+
+      .portfolio-overview a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": "https://angelwiebe.ca/",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Angel Wiebe",
+          "jobTitle": "Software Developer",
+          "url": "https://angelwiebe.ca/",
+          "sameAs": [
+            "https://github.com/AngelWiebe",
+            "https://www.linkedin.com/in/angel-wiebe-a07112113/"
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="portfolio-overview">
+        <h1>Angel Wiebe</h1>
+        <p>
+          I’m a software developer in Okotoks, Alberta, with experience building
+          front-end and full-stack applications using React, TypeScript, and
+          other web technologies.
+        </p>
+        <h2>Selected projects</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/AngelWiebe/virtual-resume">Virtual Resume</a>
+            explores my work history through a 3D castle built in Godot.
+          </li>
+          <li>
+            <a href="https://github.com/AngelWiebe/google-map-example">Google Map Example</a>
+            combines a searchable therapist directory with an interactive map in React and TypeScript.
+          </li>
+          <li>
+            <a href="https://github.com/AngelWiebe/godot-tutorial">Godot Tutorial</a>
+            demonstrates a 2D game where the player dodges enemies.
+          </li>
+        </ul>
+        <p>
+          <a href="https://github.com/AngelWiebe">GitHub</a>
+          · <a href="https://www.linkedin.com/in/angel-wiebe-a07112113/">LinkedIn</a>
+        </p>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
