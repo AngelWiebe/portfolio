@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../src/i18n";
 import Experience from "../src/components/Experience";
@@ -23,6 +24,7 @@ describe("Experience Component", () => {
   const mockOnClick = vi.fn();
 
   beforeEach(() => {
+    mockOnClick.mockClear();
     render(
       <I18nextProvider i18n={i18n}>
         <Experience experience={mockExperience} onClick={mockOnClick} />
@@ -59,8 +61,16 @@ describe("Experience Component", () => {
   });
 
   test("calls onClick function when card is clicked", () => {
-    const cardElement = screen.getByRole("article");
+    const cardElement = screen.getByRole("button", { name: mockExperience.title });
     fireEvent.click(cardElement);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
+  });
+
+  test("opens the card with Enter and Space", async () => {
+    const user = userEvent.setup();
+    await user.tab();
+    expect(screen.getByRole("button", { name: mockExperience.title })).toHaveFocus();
+    await user.keyboard("{Enter} ");
+    expect(mockOnClick).toHaveBeenCalledTimes(2);
   });
 });

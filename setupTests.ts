@@ -5,6 +5,8 @@ import '@testing-library/jest-dom'; // If you haven't done this yet, ensure jest
 global.matchMedia = global.matchMedia || function() {
   return {
     matches: false,
+    addEventListener: () => {},
+    removeEventListener: () => {},
     addListener: () => {},
     removeListener: () => {},
   };

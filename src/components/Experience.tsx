@@ -1,4 +1,12 @@
-import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  Typography,
+} from "@mui/material";
+import { useId } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
 
@@ -11,59 +19,57 @@ interface ExperienceProps {
 
 const Experience = ({ experience, onClick }: ExperienceProps) => {
   const { t } = useTranslation();
+  const titleId = useId();
 
   return (
-    <>
-      <Card
-        tabIndex={0}
-        role="article"
-        aria-labelledby={`${experience.title}-header`}
-        className={experience.type === "job" ? "blue" : "pink"}
-        style={{ cursor: "pointer" }}
-        onClick={onClick}
-      >
-        <CardHeader
-          title={
-            <Typography
-              variant="h6"
-              className="title"
-              id={`${experience.title}-header`}
-            >
-              {experience.title}
-            </Typography>
-          }
-          action={<ExpandMoreIcon />}
-        />
-        <CardContent>
-          {experience.company && (
-            <Typography data-testid="company">
-              <Box component="span" fontWeight="bold">
-                {t("company")}
-              </Box>
-              {experience.company}
-            </Typography>
-          )}
-
-          <Typography data-testid="timeline">
-            <Box component="span" fontWeight="bold">
-              {t("timeline")}
-            </Box>
-            {experience.timeline}
+    <Card
+      role="article"
+      aria-labelledby={titleId}
+      className={experience.type === "job" ? "blue" : "pink"}
+    >
+      <CardHeader
+        title={
+          <Typography
+            component="h3"
+            variant="h6"
+            className="title"
+            id={titleId}
+          >
+            {experience.title}
           </Typography>
+        }
+        action={<ExpandMoreIcon />}
+      />
+      <CardContent>
+        {experience.company && (
+          <Typography data-testid="company">
+            <Box component="span" fontWeight="bold">
+              {t("company")}
+            </Box>
+            {experience.company}
+          </Typography>
+        )}
 
-          <Typography>{experience.details.substring(0, 50)}...</Typography>
+        <Typography data-testid="timeline">
+          <Box component="span" fontWeight="bold">
+            {t("timeline")}
+          </Box>
+          {experience.timeline}
+        </Typography>
 
-          {experience.tech_stack && (
-            <Typography data-testid="tech_stack">
-              <Box component="span" fontWeight="bold">
-                {t("tech_stack")}
-              </Box>
-              {experience.tech_stack}
-            </Typography>
-          )}
-        </CardContent>
-      </Card>
-    </>
+        <Typography>{experience.details.substring(0, 50)}...</Typography>
+
+        {experience.tech_stack && (
+          <Typography data-testid="tech_stack">
+            <Box component="span" fontWeight="bold">
+              {t("tech_stack")}
+            </Box>
+            {experience.tech_stack}
+          </Typography>
+        )}
+      </CardContent>
+      <CardActionArea aria-labelledby={titleId} onClick={onClick} />
+    </Card>
   );
 };
 

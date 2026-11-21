@@ -4,6 +4,9 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Button, IconButton, Stack, useTheme } from "@mui/material";
 import { Trans, useTranslation } from "react-i18next";
 
+import enPdf from "../assets/Resume2026.pdf";
+import frPdf from "../assets/ResumeFR2026.pdf";
+
 const Header = () => {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
@@ -12,18 +15,7 @@ const Header = () => {
     i18n.changeLanguage(lang);
   };
 
-  const downloadPdf = () => {
-    const link = document.createElement("a");
-    const enPdf = "./src/assets/Resume2025.pdf";
-    const frPdf = "./src/assets/ResumeFR2025.pdf";
-
-    const pdfToDownload = i18n.language === "fr" ? frPdf : enPdf;
-    link.href = pdfToDownload;
-    link.setAttribute("download", "resume.pdf");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
+  const resumeUrl = i18n.resolvedLanguage === "fr" ? frPdf : enPdf;
 
   return (
     <Stack
@@ -33,7 +25,7 @@ const Header = () => {
       width="100%"
       spacing={2}
       sx={{
-        padding: { xs: 2, sm: 3 },
+        px: { xs: 2, sm: 3 },
         width: "100%",
         maxWidth: "100%",
         [theme.breakpoints.up("sm")]: {
@@ -83,7 +75,9 @@ const Header = () => {
 
       <Button
         className="download-resume"
-        onClick={downloadPdf}
+        component="a"
+        href={resumeUrl}
+        download="resume.pdf"
         variant="text"
         aria-label={t("aria.download_resume")}
         sx={{
@@ -104,11 +98,13 @@ const Header = () => {
           marginTop: { xs: 2, sm: 0 },
           justifyContent: { xs: "center", sm: "flex-end" },
         }}
+        role="group"
         aria-label={t("aria.language_switcher")}
       >
         <Button
           onClick={() => changeLanguageHandler("en")}
-          aria-label="Switch to English"
+          aria-label={t("aria.switch_english")}
+          aria-pressed={i18n.resolvedLanguage === "en"}
           variant="text"
           sx={{
             fontSize: { xs: "12px", sm: "14px" },
@@ -119,7 +115,8 @@ const Header = () => {
         </Button>
         <Button
           onClick={() => changeLanguageHandler("fr")}
-          aria-label="Switch to French"
+          aria-label={t("aria.switch_french")}
+          aria-pressed={i18n.resolvedLanguage === "fr"}
           variant="text"
           sx={{
             fontSize: { xs: "12px", sm: "14px" },

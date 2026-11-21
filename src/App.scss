@@ -26,18 +26,20 @@ body {
 }
 
 .visually-hidden {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.hide-on-mobile {
-  display: none;
-}
-
-.neon-text {
+.neon-text.MuiTypography-root {
   font-family: 'Orbitron', sans-serif;
-  font-size: 4rem;
+  font-size: clamp(1.75rem, 7vw, 4rem);
   text-transform: uppercase;
-  letter-spacing: 8px;
+  letter-spacing: clamp(2px, 0.75vw, 8px);
   color: #fff;
 
   background: linear-gradient(90deg, $pink, $blue);
@@ -62,7 +64,7 @@ body {
 header {
   padding: 10px 20px;
   color: $white-shadow;
-  height: 40px;
+  min-height: 40px;
   display: flex;
   background-color: $baseColor;
 
@@ -117,9 +119,9 @@ header {
   }
   }
 
-  button.download-resume {
+  .download-resume {
       background-color: $pink;
-      color: $white-shadow;
+      color: $baseColor;
       font-family: 'Orbitron', sans-serif;
       padding: 5px 10px;
       border: none;
@@ -166,12 +168,14 @@ div.MuiCard-root {
       box-shadow: 0 8px 16px rgba(255, 0, 255, 0.6), 0 4px 8px rgba(255, 0, 255, 0.4);
   }
 
-  &:hover {
-    transform: scale(1.2);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.04);
+    }
   }
   
   .title.MuiTypography-root {
-      font-size: 24px;
+      font-size: 1.5rem;
       color: $white-shadow;
       margin-bottom: 10px;
   }
@@ -220,29 +224,41 @@ button.slick-arrow {
 .experience {
   .slider-wrapper {
     overflow: hidden;
-    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
     .slick-slide {
       display: flex !important;
       justify-content: center;
       align-items: center;
-      height: 400px;
+      height: auto;
+      min-height: 400px;
+      padding-block: 24px;
+      box-sizing: border-box;
 
       .MuiCard-root {
-        width: 250px; 
-        height: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        width: min(250px, calc(100% - 24px));
+        min-height: 300px;
+        position: relative;
+        overflow-wrap: anywhere;
         box-sizing: border-box; 
         padding: 10px; 
 
-        &:focus {
-          outline: none;
+        .MuiCardActionArea-root {
+          position: absolute;
+          inset: 0;
+
+          &.Mui-focusVisible {
+            outline: 2px solid $blue;
+            outline-offset: -2px;
+          }
         }
 
         .MuiCardHeader-root {
@@ -291,19 +307,9 @@ button.slick-arrow {
   }
 }
 
-.MuiCard-root {
-  max-height: 300px; 
-  overflow: hidden;
-  transition: transform $transition-ease;
-
-  &:hover {
-    transform: scale(1.05); 
-  }
-}
-
 
 .modal {
-  h6.MuiTypography-root {
+  h2.MuiTypography-root {
     color: $blue; 
     text-align: center;
   }
@@ -331,6 +337,22 @@ button.slick-arrow {
     background-color: $baseColor;
     padding: 20px;
     transition: transform $transition-ease, box-shadow $transition-ease;
+  }
+
+  .MuiDialogActions-root {
+    background-color: $baseColor;
+    border-top: 1px solid rgba(245, 245, 245, 0.2);
+    padding: 8px 20px;
+
+    .MuiButton-root {
+      color: $blue;
+      min-height: 44px;
+
+      &.Mui-focusVisible {
+        outline: 2px solid $blue;
+        outline-offset: -2px;
+      }
+    }
   }
 
   .MuiIconButton-root {
@@ -365,9 +387,12 @@ footer {
 
   .skill-list {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-between;
-    width: 90%;
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
     margin-top: 0 !important;
 
     .skill-item {
@@ -396,61 +421,52 @@ footer {
   }
 
   header {
-    display: flex;
-    height: auto;
     padding: 0;
 
-    .MuiStack-root {
-      width: 45%;
-      flex: 45%;
-      flex-direction: row;
-      flex-wrap: wrap;
+    > .MuiStack-root {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
       padding: 10px;
 
-      .location, 
-      .social-icons, 
-      button.download-resume, 
-      .language-switcher {
-        width: 48%;
+      > * {
+        margin: 0;
+        min-width: 0;
+      }
 
-        button {
-          height: fit-content;
+      .location {
+        font-size: 1rem;
+        overflow-wrap: anywhere;
+      }
+
+      .social-icons,
+      .language-switcher {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 4px;
+
+        > * {
+          margin: 0;
         }
       }
 
-      .location, .social-icons {
-        order: 1;
-        font-size: 1rem;
-      }
-
-      button.download-resume, .language-switcher {
-        order: 2;
-        font-size: 1rem;
-        padding: 0;
+      .download-resume {
         width: fit-content;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
-      .social-icons {
-        justify-content: end;
-        gap: 0;
-        padding: 0;
-        margin-bottom: 10px;
-      }
-
-      .language-switcher {
-        justify-content: end;
+      .language-switcher button {
+        padding-inline: 8px;
       }
     }
-  }  
+  }
 
   .main-content {
     padding: 20px;
     height: auto;
     background-position: right;
-
-    .hide-on-mobile {
-      display: block;
-    }
 
     .bio.MuiTypography-root {
       margin-top: 20vh;
@@ -481,10 +497,38 @@ footer {
 
   footer {
     padding: 10px;
-    .skill-list {
-      flex-wrap: wrap;
+
+    > .MuiStack-root {
+      flex-direction: column;
+      align-items: flex-start;
       gap: 10px;
-      width: 100%;
     }
+
+    .skill-list {
+      box-sizing: border-box;
+      width: 100%;
+      margin-inline: 0;
+      padding-inline-start: 1.2em;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header .location {
+    animation: none;
+  }
+
+  header .download-resume,
+  header .language-switcher button,
+  header .social-icons a,
+  div.MuiCard-root,
+  button.slick-arrow,
+  .modal .MuiDialogContent-root,
+  .modal .MuiIconButton-root {
+    transition: none;
+  }
+
+  div.MuiCard-root:hover {
+    transform: none;
   }
 }

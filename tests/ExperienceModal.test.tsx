@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import ExperienceModal from "../src/components/ExperienceModal";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../src/i18n";
@@ -15,6 +16,7 @@ describe("ExperienceModal Component", () => {
     tech_stack: "React, TypeScript",
     git_link: "https://github.com/test",
     preview: "https://example.com/video.mp4",
+    preview_description: "The demo opens with a search field and a map.",
     site: "https://example.com",
     type: "job",
   };
@@ -34,6 +36,9 @@ describe("ExperienceModal Component", () => {
   });
 
   test("renders experience title", () => {
+    expect(
+      screen.getByRole("dialog", { name: mockExperience.title }),
+    ).toBeInTheDocument();
     const titleElement = screen.getByRole("heading", {
       name: mockExperience.title,
     });
@@ -60,6 +65,24 @@ describe("ExperienceModal Component", () => {
     fireEvent.click(previewButton);
 
     const videoElement = screen.getByTestId("video");
-    expect(videoElement).toBeInTheDocument();
+    expect(videoElement).toHaveAccessibleDescription(
+      expect.stringContaining(mockExperience.preview_description),
+    );
+    expect(
+      screen.getByRole("dialog", { name: i18n.t("aria.preview_video") }),
+    ).toContainElement(videoElement);
+  });
+
+  test("returns focus to details on Escape and closes details on the next Escape", async () => {
+    const user = userEvent.setup();
+    const previewButton = screen.getByTestId("preview_video");
+    await user.click(previewButton);
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByTestId("video")).not.toBeInTheDocument();
+    expect(previewButton).toHaveFocus();
+
+    await user.keyboard("{Escape}");
+    expect(handleDetailsClose).toHaveBeenCalledTimes(1);
   });
 });

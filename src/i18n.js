@@ -2,6 +2,11 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
+import googlePreview from "./assets/previews/google-preview.mp4";
+import godotPreview from "./assets/previews/godot-preview.mp4";
+import gnrPreview from "./assets/previews/gnr-preview.mp4";
+import resumePreview from "./assets/previews/resume-preview.mp4";
+
 i18n
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
@@ -50,8 +55,16 @@ i18n
             preview_video: "Watch the project preview video",
             website_link: "Visit the project website",
             download_resume: "Download Resume",
-            language_switcher: "Sélecteur de langue",
+            language_switcher: "Language switcher",
+            switch_english: "EN — English",
+            switch_french: "FR — French",
+            previous_projects: "Previous experience cards",
+            next_projects: "Next experience cards",
           },
+          experience: "Experience",
+          video_description: "Video description:",
+          close_project: "Close",
+          back_to_project: "Back to project",
           download: "Download Resume",
           timeline: "Timeline: ",
           work_type: "Work Type: ",
@@ -79,7 +92,9 @@ i18n
               tech_stack: "GD Script",
               details:
                 "This game, developed in Godot, serves as a creative way to showcase my resume. The walls of the castle display my professional experience, skills, and achievements, turning a simple resume into an immersive and interactive experience. I used GDScript to design smooth gameplay mechanics and dynamic visuals, emphasizing my skills in game development while creatively presenting my career journey.",
-              preview: "./src/assets/previews/resume-preview.mp4",
+              preview: resumePreview,
+              preview_description:
+                "The opening screen explains how to move, jump, attack, and control the camera. The player explores the castle grounds in third person, passing trees, stone walls, and career information displayed on the walls. The objective is to defeat ghosts and collect 14 golden skills. The counter advances from 0 to 1, and the clip returns to the controls screen.",
               git_link: "https://github.com/AngelWiebe/virtual-resume",
             },
             {
@@ -89,7 +104,9 @@ i18n
               tech_stack: "React, Typescript",
               details:
                 "This site, developed with React and TypeScript, features a clean, modern interface designed for smooth user interactions. A Google search bar integrates with their API for real-time data fetching, and the mobile-first layout adapts seamlessly across devices.",
-              preview: "./src/assets/previews/google-preview.mp4",
+              preview: googlePreview,
+              preview_description:
+                "A therapist directory shows search and filters on the left, a Google map with red pins in the center, and therapist cards on the right. Typing in the search box moves the map and updates the list. Selecting filters narrows the pins around Calgary and changes which cards appear.",
               git_link: "https://github.com/AngelWiebe/google-map-example",
             },
             {
@@ -112,7 +129,9 @@ i18n
               tech_stack: "GD Script",
               details:
                 "This project, developed in Godot, serves as a showcase of my game development skills. It highlights my ability to create a 2D game with smooth animations, responsive character controls, and dynamic mechanics. Using GDScript, I implemented complex interactions, collision detection, and level design, focusing on clean and efficient code.",
-              preview: "./src/assets/previews/godot-preview.mp4",
+              preview: godotPreview,
+              preview_description:
+                "The game opens on a teal screen titled Dodge the Creeps! After Start and a Get Ready message, a pale character moves to dodge dark enemies with red centers entering from the edges. The score rises as the character survives. The round ends with Game Over and a score of 5.",
               git_link: "https://github.com/AngelWiebe/godot-tutorial",
             },
             {
@@ -142,7 +161,9 @@ i18n
               tech_stack: "Javascript, HTML, CSS",
               details:
                 "I created this website during the first year of my career as a Christmas gift for my father's company. It was an opportunity to sharpen my CSS skills, focusing on responsive design and user interface elements while delivering a meaningful project for my family.",
-              preview: "./src/assets/previews/gnr-preview.mp4",
+              preview: gnrPreview,
+              preview_description:
+                "The G & R Logging homepage has a birch forest background, a section menu on the left, and a slideshow of logging equipment and trucks. The demo moves down to the testimonials and contact forms, then uses the browser’s responsive preview to show how the site fits on a narrow mobile screen.",
               git_link: "https://github.com/AngelWiebe/gnr-logging",
               site: "https://AngelWiebe.github.io/gnr-logging/",
             },
@@ -212,8 +233,16 @@ i18n
             preview_video: "Regardez la vidéo de prévisualisation du projet",
             website_link: "Visitez le site Web du projet",
             download_resume: "Télécharger le CV",
-            language_switcher: "Language Switcher",
+            language_switcher: "Sélecteur de langue",
+            switch_english: "EN — Anglais",
+            switch_french: "FR — Français",
+            previous_projects: "Fiches d’expérience précédentes",
+            next_projects: "Fiches d’expérience suivantes",
           },
+          experience: "Expérience",
+          video_description: "Description de la vidéo :",
+          close_project: "Fermer",
+          back_to_project: "Retour au projet",
           download: "Télécharger le CV",
           timeline: "Chronologie: ",
           work_type: "Type de travail: ",
@@ -242,7 +271,9 @@ i18n
               tech_stack: "GD Script",
               details:
                 "Ce jeu, développé dans Godot, offre un moyen créatif de présenter mon CV. Les murs du château affichent mon expérience professionnelle, mes compétences et mes réalisations, transformant un simple CV en une expérience immersive et interactive. J'ai utilisé GDScript pour concevoir des mécaniques de jeu fluides, des transitions de niveau sans faille et des visuels dynamiques, mettant en avant mes compétences en développement tout en présentant de manière créative mon parcours professionnel.",
-              preview: "./src/assets/previews/resume-preview.mp4",
+              preview: resumePreview,
+              preview_description:
+                "L’écran d’accueil explique comment se déplacer, sauter, attaquer et orienter la caméra. Le personnage explore les alentours du château à la troisième personne, entre les arbres et les murs de pierre qui présentent le parcours professionnel. Le but est de vaincre les fantômes et de réunir 14 compétences dorées. Le compteur passe de 0 à 1, puis la vidéo revient à l’écran des commandes.",
               git_link: "https://github.com/AngelWiebe/virtual-resume",
             },
             {
@@ -252,7 +283,9 @@ i18n
               tech_stack: "React, Typescript",
               details:
                 "Ce site, développé avec React et TypeScript, présente une interface moderne et épurée, conçue pour des interactions utilisateur fluides. Une barre de recherche Google est intégrée à leur API pour la récupération de données en temps réel, et la mise en page mobile-first s'adapte parfaitement aux différents appareils.",
-              preview: "./src/assets/previews/google-preview.mp4",
+              preview: googlePreview,
+              preview_description:
+                "Un répertoire de thérapeutes affiche la recherche et les filtres à gauche, une carte Google avec des repères rouges au centre et les fiches des thérapeutes à droite. La saisie dans le champ de recherche déplace la carte et actualise la liste. Les filtres réduisent le nombre de repères autour de Calgary et modifient les fiches affichées.",
               git_link: "https://github.com/AngelWiebe/google-map-example",
             },
             {
@@ -274,7 +307,9 @@ i18n
               tech_stack: "GD Script",
               details:
                 "Ce projet, développé avec Godot, sert de vitrine pour mes compétences en développement de jeux. Il met en avant ma capacité à créer un jeu 2D avec des animations fluides, des contrôles de personnage réactifs et des mécaniques dynamiques. En utilisant GDScript, j'ai implémenté des interactions complexes, la détection de collisions et la conception de niveaux, en mettant l'accent sur un code propre et efficace.",
-              preview: "./src/assets/previews/godot-preview.mp4",
+              preview: godotPreview,
+              preview_description:
+                "Le jeu s’ouvre sur un écran bleu-vert intitulé Dodge the Creeps! Après le bouton Start et le message de préparation, un personnage clair se déplace pour éviter des ennemis sombres au centre rouge qui surgissent des bords. Le score augmente tant que le personnage survit. La partie se termine sur Game Over avec un score de 5.",
               git_link: "https://github.com/AngelWiebe/godot-tutorial",
             },
             {
@@ -304,7 +339,9 @@ i18n
               tech_stack: "HTML, CSS, Javascript",
               details:
                 "J'ai créé ce site web pendant la première année de ma carrière comme cadeau de Noël pour l'entreprise de mon père. C'était une occasion de perfectionner mes compétences en CSS, en me concentrant sur la conception réactive et les éléments de l'interface utilisateur tout en réalisant un projet significatif pour ma famille.",
-              preview: "./src/assets/previews/gnr-preview.mp4",
+              preview: gnrPreview,
+              preview_description:
+                "La page d’accueil de G & R Logging présente un fond de forêt de bouleaux, un menu à gauche et un diaporama de camions et de machines forestières. La vidéo montre ensuite les témoignages et les formulaires de contact, puis utilise le mode adaptatif du navigateur pour montrer le site sur un écran mobile étroit.",
               git_link: "https://github.com/AngelWiebe/gnr-logging",
               site: "https://AngelWiebe.github.io/gnr-logging/",
             },

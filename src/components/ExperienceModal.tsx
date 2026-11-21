@@ -1,12 +1,15 @@
 import {
   Typography,
   Box,
+  Button,
   IconButton,
   Dialog,
+  DialogActions,
   DialogContent,
+  useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useState, useRef } from "react";
+import { useId, useState } from "react";
 
 import experienceInterface from "../types/experience";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -26,7 +29,9 @@ const ExperienceModal = ({
 }: ExperienceModalProps) => {
   const { t } = useTranslation();
   const [videoOpen, setVideoOpen] = useState(false);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const detailsTitleId = useId();
+  const videoDescriptionId = useId();
+  const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
   if (!experience) return null;
 
@@ -46,12 +51,11 @@ const ExperienceModal = ({
         maxWidth="md"
         fullWidth
         className={`modal ${experience.type === "job" ? "blue" : "pink"}`}
-        ref={dialogRef}
-        aria-labelledby={`${experience.title}-details`}
-        aria-modal="true"
+        aria-labelledby={detailsTitleId}
+        transitionDuration={reduceMotion ? 0 : undefined}
       >
         <DialogContent className="modal">
-          <Typography variant="h6" id={`${experience.title}-details`}>
+          <Typography component="h2" variant="h6" id={detailsTitleId}>
             {experience.title}
           </Typography>
           {experience.company && (
@@ -135,30 +139,49 @@ const ExperienceModal = ({
             </IconButton>
           )}
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDetailsClose}>{t("close_project")}</Button>
+        </DialogActions>
       </Dialog>
 
-      <Dialog
-        open={videoOpen}
-        onClose={handleVideoClose}
-        maxWidth="md"
-        fullWidth
-        className="modal"
-        aria-labelledby="video-dialog-title"
-        aria-describedby="video-description"
-      >
-        <DialogContent className="modal">
-          <video width="100%" height="500" controls muted playsInline data-testid="video">
-            <source src={experience.preview || undefined} type="video/mp4" />
-            {t("unsupported")}
-          </video>
-          <Typography
-            variant="caption"
-            id={`${experience.title}-video-description`}
-          >
-            {experience.details}
-          </Typography>
-        </DialogContent>
-      </Dialog>
+      {videoOpen && (
+        <Dialog
+          open
+          onClose={handleVideoClose}
+          maxWidth="md"
+          fullWidth
+          className="modal"
+          slotProps={{ paper: { "aria-label": t("aria.preview_video") } }}
+          transitionDuration={reduceMotion ? 0 : undefined}
+        >
+          <DialogContent className="modal">
+            <video
+              width="100%"
+              height="500"
+              controls
+              muted
+              playsInline
+              aria-label={t("aria.preview_video")}
+              aria-describedby={
+                experience.preview_description ? videoDescriptionId : undefined
+              }
+              data-testid="video"
+            >
+              <source src={experience.preview || undefined} type="video/mp4" />
+              {t("unsupported")}
+            </video>
+            {experience.preview_description && (
+              <Typography id={videoDescriptionId}>
+                <strong>{t("video_description")}</strong>{" "}
+                {experience.preview_description}
+              </Typography>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleVideoClose}>{t("back_to_project")}</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

@@ -8,6 +8,7 @@ export default interface experienceInterface {
   details: string;
   tech_stack: string;
   preview: string | null;
+  preview_description?: string;
   git_link: string;
   site: string | null;
 }

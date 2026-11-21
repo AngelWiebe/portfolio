@@ -8,5 +8,10 @@ export default defineConfig({
     environment: 'jsdom', // Use jsdom for DOM-related tests
     setupFiles: './setupTests.ts', // Reference your setup file here
     globals: true, // Make Vitest globals available
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.{ts,tsx,js}'],
+      reporter: ['text', 'html', 'json-summary'],
+    },
   },
 });
