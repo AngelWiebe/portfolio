@@ -9,9 +9,9 @@ test("keyboard users can skip the header and tab between projects", async ({ pag
   await expect(page.getByRole("main")).toBeFocused();
 
   const work = page.getByRole("region", { name: "Selected work" });
-  await work.getByRole("button", { name: "Virtual Resume" }).focus();
+  await work.getByRole("button", { name: "True Depth Capital" }).focus();
   await page.keyboard.press("Tab");
-  await expect(work.getByRole("button", { name: "Google Map Example" })).toBeFocused();
+  await expect(work.getByRole("button", { name: "Charmed Code" })).toBeFocused();
 });
 
 test("keeps navigation and project dialogs usable with reduced motion", async ({ page }) => {

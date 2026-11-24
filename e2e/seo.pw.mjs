@@ -16,6 +16,15 @@ test("serves portfolio content and search metadata without JavaScript", async ({
     "https://github.com/AngelWiebe/virtual-resume",
   );
 
+  await expect(page.getByRole("link", { name: "True Depth Capital" })).toHaveAttribute(
+    "href",
+    "https://angelwiebe.github.io/true-depth-capital/",
+  );
+  await expect(page.getByRole("link", { name: "Charmed Code" })).toHaveAttribute(
+    "href",
+    "https://angelwiebe.github.io/charmed-code/",
+  );
+
   const profile = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
   expect(profile).toMatchObject({
     "@type": "ProfilePage",

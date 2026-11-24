@@ -22,7 +22,7 @@ const Experience = ({ experience, onClick }: ExperienceProps) => {
       className={isJob ? "role" : isFeatured ? "project project-featured" : "project project-compact"}
     >
       {experience.featured_image && (
-        <img className="project-image" src={experience.featured_image} alt="" width="960" height="560" />
+        <img className="project-image" src={experience.featured_image} alt="" width="1280" height="720" />
       )}
       <div className="entry-content">
         <p className="entry-date" data-testid="timeline">{experience.timeline}</p>

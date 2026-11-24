@@ -6,8 +6,8 @@ import googlePreview from "./assets/previews/google-preview.mp4";
 import godotPreview from "./assets/previews/godot-preview.mp4";
 import gnrPreview from "./assets/previews/gnr-preview.mp4";
 import resumePreview from "./assets/previews/resume-preview.mp4";
-import mapStill from "./assets/project-stills/map-directory.jpg";
-import resumeStill from "./assets/project-stills/virtual-resume.jpg";
+import charmedStill from "./assets/project-stills/charmed-code.jpg";
+import trueDepthStill from "./assets/project-stills/true-depth-capital.jpg";
 
 const projectSites = {
   charmedCode: "https://angelwiebe.github.io/charmed-code/",
@@ -88,21 +88,23 @@ i18n
           cards: [
             {
               type: "project",
-              title: "Charmed Code",
-              timeline: "2026",
-              tech_stack: "React, Vite, GSAP",
-              details:
-                "A marketing site for an Alberta web design and development studio, with featured work and a project inquiry form.",
-              site: projectSites.charmedCode,
-            },
-            {
-              type: "project",
               title: "True Depth Capital",
+              featured_image: trueDepthStill,
               timeline: "2026",
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:
                 "A site for Canadian vehicle sourcing that lets licensed U.S. dealers submit wholesale inquiries.",
               site: projectSites.trueDepth,
+            },
+            {
+              type: "project",
+              title: "Charmed Code",
+              featured_image: charmedStill,
+              timeline: "2026",
+              tech_stack: "React, Vite, GSAP",
+              details:
+                "A marketing site for an Alberta web design and development studio, with featured work and a project inquiry form.",
+              site: projectSites.charmedCode,
             },
             {
               type: "project",
@@ -153,7 +155,6 @@ i18n
             {
               type: "project",
               title: "Virtual Resume",
-              featured_image: resumeStill,
               summary: "An interactive résumé built in Godot. Explore a 3D castle to discover my work history and skills.",
               timeline: "2024",
               tech_stack: "GD Script",
@@ -167,7 +168,6 @@ i18n
             {
               type: "project",
               title: "Google Map Example",
-              featured_image: mapStill,
               summary: "A searchable therapist directory with map pins, location filters, and results that update together.",
               timeline: "2024",
               tech_stack: "React, Typescript",
@@ -390,21 +390,23 @@ i18n
           cards: [
             {
               type: "project",
-              title: "Charmed Code",
-              timeline: "2026",
-              tech_stack: "React, Vite, GSAP",
-              details:
-                "Site vitrine d’un studio albertain de conception et de développement web, avec des projets en vedette et un formulaire de demande.",
-              site: projectSites.charmedCode,
-            },
-            {
-              type: "project",
               title: "True Depth Capital",
+              featured_image: trueDepthStill,
               timeline: "2026",
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:
                 "Site d’approvisionnement en véhicules canadiens qui permet aux concessionnaires américains agréés de soumettre des demandes d’achat en gros.",
               site: projectSites.trueDepth,
+            },
+            {
+              type: "project",
+              title: "Charmed Code",
+              featured_image: charmedStill,
+              timeline: "2026",
+              tech_stack: "React, Vite, GSAP",
+              details:
+                "Site vitrine d’un studio albertain de conception et de développement web, avec des projets en vedette et un formulaire de demande.",
+              site: projectSites.charmedCode,
             },
             {
               type: "project",
@@ -455,7 +457,6 @@ i18n
             {
               type: "project",
               title: "CV Virtuel",
-              featured_image: resumeStill,
               summary: "Un CV interactif réalisé avec Godot. Explorez un château en 3D pour découvrir mon parcours et mes compétences.",
               timeline: "2024",
               tech_stack: "GD Script",
@@ -469,7 +470,6 @@ i18n
             {
               type: "project",
               title: "Exemple de Google Map",
-              featured_image: mapStill,
               summary: "Un répertoire de thérapeutes avec des repères sur la carte, des filtres géographiques et des résultats synchronisés.",
               timeline: "2024",
               tech_stack: "React, Typescript",

@@ -50,6 +50,17 @@ describe("App Component", () => {
     expect(within(experience).getByRole("button", { name: "Intern" })).toBeInTheDocument();
   });
 
+  test("features True Depth Capital and Charmed Code first, with project screenshots", () => {
+    const work = within(screen.getByRole("region", { name: "Selected work" }));
+    const cards = work.getAllByRole("article");
+
+    expect(cards.slice(0, 2).map((card) => card.querySelector("h3")?.textContent))
+      .toEqual(["True Depth Capital", "Charmed Code"]);
+    expect(cards.slice(0, 2).every((card) => card.querySelector("img")?.hasAttribute("src"))).toBe(true);
+    expect(work.getByRole("button", { name: "Virtual Resume" })).toBeInTheDocument();
+    expect(work.getByRole("button", { name: "Google Map Example" })).toBeInTheDocument();
+  });
+
   test.each([
     ["DLR Consulting Ltd.", "https://dlrconsulting.ca/"],
     ["True Depth Capital", "https://angelwiebe.github.io/true-depth-capital/"],
