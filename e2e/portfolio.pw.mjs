@@ -75,7 +75,7 @@ test("keeps French content within a narrow viewport with doubled text", async ({
   ).toBe(320);
 
   const cards = page.getByRole("main").getByRole("article");
-  await expect(cards).toHaveCount(11);
+  await expect(cards).toHaveCount(14);
   await expect.poll(() =>
     cards.evaluateAll((entries) => entries.every((entry) => {
       const bottom = entry.getBoundingClientRect().bottom;

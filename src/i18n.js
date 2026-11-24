@@ -9,6 +9,12 @@ import resumePreview from "./assets/previews/resume-preview.mp4";
 import mapStill from "./assets/project-stills/map-directory.jpg";
 import resumeStill from "./assets/project-stills/virtual-resume.jpg";
 
+const projectSites = {
+  charmedCode: "https://angelwiebe.github.io/charmed-code/",
+  trueDepth: "https://angelwiebe.github.io/true-depth-capital/",
+  dlr: "https://dlrconsulting.ca/",
+};
+
 i18n
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
@@ -79,6 +85,33 @@ i18n
           tech_stack: "Tech Stack: ",
           unsupported: "Your browser does not support the video tag.",
           cards: [
+            {
+              type: "project",
+              title: "Charmed Code",
+              timeline: "2026",
+              tech_stack: "React, Vite, GSAP",
+              details:
+                "A marketing site for an Alberta web design and development studio, with featured work and a project inquiry form.",
+              site: projectSites.charmedCode,
+            },
+            {
+              type: "project",
+              title: "True Depth Capital",
+              timeline: "2026",
+              tech_stack: "HTML, CSS, JavaScript, Vite",
+              details:
+                "A site for Canadian vehicle sourcing that lets licensed U.S. dealers submit wholesale inquiries.",
+              site: projectSites.trueDepth,
+            },
+            {
+              type: "project",
+              title: "DLR Consulting Ltd.",
+              timeline: "2026",
+              tech_stack: "React, TypeScript, Vite, i18next",
+              details:
+                "A bilingual site for a negotiation and representation practice, covering services, professional coverage, payment terms, and contact information.",
+              site: projectSites.dlr,
+            },
             {
               type: "job",
               company: "Contractor",
@@ -266,6 +299,33 @@ i18n
           unsupported:
             "Votre navigateur ne prend pas en charge la balise vidéo.",
           cards: [
+            {
+              type: "project",
+              title: "Charmed Code",
+              timeline: "2026",
+              tech_stack: "React, Vite, GSAP",
+              details:
+                "Site vitrine d’un studio albertain de conception et de développement web, avec des projets en vedette et un formulaire de demande.",
+              site: projectSites.charmedCode,
+            },
+            {
+              type: "project",
+              title: "True Depth Capital",
+              timeline: "2026",
+              tech_stack: "HTML, CSS, JavaScript, Vite",
+              details:
+                "Site d’approvisionnement en véhicules canadiens qui permet aux concessionnaires américains agréés de soumettre des demandes d’achat en gros.",
+              site: projectSites.trueDepth,
+            },
+            {
+              type: "project",
+              title: "DLR Consulting Ltd.",
+              timeline: "2026",
+              tech_stack: "React, TypeScript, Vite, i18next",
+              details:
+                "Site bilingue d’un cabinet de négociation et de représentation qui présente ses services, sa couverture professionnelle, ses modalités de paiement et ses coordonnées.",
+              site: projectSites.dlr,
+            },
             {
               type: "job",
               company: "Contractuel",

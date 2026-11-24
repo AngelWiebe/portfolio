@@ -44,10 +44,22 @@ describe("App Component", () => {
     const projects = screen.getByRole("region", { name: "Selected work" });
     const experience = screen.getByRole("region", { name: "Experience" });
 
-    expect(within(projects).getAllByRole("article")).toHaveLength(6);
+    expect(within(projects).getAllByRole("article")).toHaveLength(9);
     expect(within(experience).getAllByRole("article")).toHaveLength(5);
     expect(within(projects).getByRole("button", { name: "Movie Database" })).toBeInTheDocument();
     expect(within(experience).getByRole("button", { name: "Intern" })).toBeInTheDocument();
+  });
+
+  test.each([
+    ["DLR Consulting Ltd.", "https://dlrconsulting.ca/"],
+    ["True Depth Capital", "https://angelwiebe.github.io/true-depth-capital/"],
+    ["Charmed Code", "https://angelwiebe.github.io/charmed-code/"],
+  ])("links %s to its live website", async (name, url) => {
+    const user = userEvent.setup();
+    const projects = within(screen.getByRole("region", { name: "Selected work" }));
+    await user.click(projects.getByRole("button", { name }));
+    const dialog = within(screen.getByRole("dialog", { name }));
+    expect(dialog.getByRole("link", { name: "Visit the project website" })).toHaveAttribute("href", url);
   });
 
   test("opens the selected project's details and restores focus when dismissed", async () => {
