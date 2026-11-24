@@ -9,12 +9,20 @@ import resumePreview from "./assets/previews/resume-preview.mp4";
 import charmedStill from "./assets/project-stills/charmed-code.jpg";
 import wildBalanceStill from "./assets/project-stills/wildbalance.jpg";
 
-const wildBalanceRepo = "https://github.com/AngelWiebe/wildbalance";
-
-const projectSites = {
-  charmedCode: "https://angelwiebe.github.io/charmed-code/",
-  trueDepth: "https://angelwiebe.github.io/true-depth-capital/",
-  dlr: "https://dlrconsulting.ca/",
+const projectLinks = {
+  wildBalance: { git_link: "https://github.com/AngelWiebe/wildbalance" },
+  trueDepth: {
+    git_link: "https://github.com/AngelWiebe/true-depth-capital",
+    site: "https://angelwiebe.github.io/true-depth-capital/",
+  },
+  charmedCode: {
+    git_link: "https://github.com/AngelWiebe/charmed-code",
+    site: "https://angelwiebe.github.io/charmed-code/",
+  },
+  dlr: {
+    git_link: "https://github.com/AngelWiebe/dlr-consulting",
+    site: "https://dlrconsulting.ca/",
+  },
 };
 
 i18n
@@ -96,7 +104,7 @@ i18n
               tech_stack: "Godot, Go, WebSockets",
               details:
                 "A 3D forest stewardship game in Godot with a Go simulation over WebSockets. Manage deer, wolves, and meadow health through four seasons.",
-              git_link: wildBalanceRepo,
+              ...projectLinks.wildBalance,
             },
             {
               type: "project",
@@ -105,7 +113,7 @@ i18n
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:
                 "A site for Canadian vehicle sourcing that lets licensed U.S. dealers submit wholesale inquiries.",
-              site: projectSites.trueDepth,
+              ...projectLinks.trueDepth,
             },
             {
               type: "project",
@@ -115,7 +123,7 @@ i18n
               tech_stack: "React, Vite, GSAP",
               details:
                 "A marketing site for an Alberta web design and development studio, with featured work and a project inquiry form.",
-              site: projectSites.charmedCode,
+              ...projectLinks.charmedCode,
             },
             {
               type: "project",
@@ -124,7 +132,7 @@ i18n
               tech_stack: "React, TypeScript, Vite, i18next",
               details:
                 "A bilingual site for a negotiation and representation practice, covering services, professional coverage, payment terms, and contact information.",
-              site: projectSites.dlr,
+              ...projectLinks.dlr,
             },
             {
               type: "job",
@@ -407,7 +415,7 @@ i18n
               tech_stack: "Godot, Go, WebSockets",
               details:
                 "Un jeu de gestion forestière en 3D créé avec Godot, qui communique par WebSocket avec une simulation en Go. Gérez les cerfs, les loups et la santé des prairies au fil des quatre saisons.",
-              git_link: wildBalanceRepo,
+              ...projectLinks.wildBalance,
             },
             {
               type: "project",
@@ -416,7 +424,7 @@ i18n
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:
                 "Site d’approvisionnement en véhicules canadiens qui permet aux concessionnaires américains agréés de soumettre des demandes d’achat en gros.",
-              site: projectSites.trueDepth,
+              ...projectLinks.trueDepth,
             },
             {
               type: "project",
@@ -426,7 +434,7 @@ i18n
               tech_stack: "React, Vite, GSAP",
               details:
                 "Site vitrine d’un studio albertain de conception et de développement web, avec des projets en vedette et un formulaire de demande.",
-              site: projectSites.charmedCode,
+              ...projectLinks.charmedCode,
             },
             {
               type: "project",
@@ -435,7 +443,7 @@ i18n
               tech_stack: "React, TypeScript, Vite, i18next",
               details:
                 "Site bilingue d’un cabinet de négociation et de représentation qui présente ses services, sa couverture professionnelle, ses modalités de paiement et ses coordonnées.",
-              site: projectSites.dlr,
+              ...projectLinks.dlr,
             },
             {
               type: "job",

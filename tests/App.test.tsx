@@ -72,15 +72,16 @@ describe("App Component", () => {
   });
 
   test.each([
-    ["DLR Consulting Ltd.", "https://dlrconsulting.ca/"],
-    ["True Depth Capital", "https://angelwiebe.github.io/true-depth-capital/"],
-    ["Charmed Code", "https://angelwiebe.github.io/charmed-code/"],
-  ])("links %s to its live website", async (name, url) => {
+    ["DLR Consulting Ltd.", "https://dlrconsulting.ca/", "https://github.com/AngelWiebe/dlr-consulting"],
+    ["True Depth Capital", "https://angelwiebe.github.io/true-depth-capital/", "https://github.com/AngelWiebe/true-depth-capital"],
+    ["Charmed Code", "https://angelwiebe.github.io/charmed-code/", "https://github.com/AngelWiebe/charmed-code"],
+  ])("links %s to its live website and source", async (name, url, source) => {
     const user = userEvent.setup();
     const projects = within(screen.getByRole("region", { name: "Selected work" }));
     await user.click(projects.getByRole("button", { name }));
     const dialog = within(screen.getByRole("dialog", { name }));
     expect(dialog.getByRole("link", { name: "Visit the project website" })).toHaveAttribute("href", url);
+    expect(dialog.getByRole("link", { name: "View project source on GitHub" })).toHaveAttribute("href", source);
   });
 
   test("shows résumé client sections and complete bullets in the expanded work view", async () => {
