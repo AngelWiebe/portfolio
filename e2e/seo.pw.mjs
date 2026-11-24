@@ -37,8 +37,18 @@ test("serves portfolio content and search metadata without JavaScript", async ({
   });
 });
 
-test("serves the sitemap, crawler directives, and the social image", async ({ page, request }) => {
+test("serves the favicon, sitemap, crawler directives, and social image", async ({ page, request }) => {
   await page.goto("/");
+  for (const [path, type] of [
+    ["/favicon-48.png", "image/png"],
+    ["/favicon.svg", "image/svg+xml"],
+  ]) {
+    await expect(page.locator(`link[rel="icon"][type="${type}"]`)).toHaveAttribute("href", path);
+    const icon = await request.get(path);
+    expect(icon.ok()).toBe(true);
+    expect(icon.headers()["content-type"]).toContain(type);
+  }
+
   const imageUrl = await page.locator('meta[property="og:image"]').getAttribute("content");
   expect(imageUrl).toBe(`${canonical}icon.jpg`);
   const image = await request.get(new URL(imageUrl).pathname);
