@@ -3,6 +3,7 @@ $muted: #5e5569;
 $accent: #5535a2;
 $lavender: #eee8f8;
 $paper: #fffdf9;
+$text-surface: rgba($paper, .86);
 $line: #ddd7e1;
 $spectrum: linear-gradient(110deg, #6642b2 3%, #a969b5 58%, #f0a88e);
 $purple-depth: linear-gradient(135deg, #312047, #4a2871 65%, #6a3d82);
@@ -146,6 +147,12 @@ main {
   align-items: center;
   gap: clamp(2rem, 7vw, 6rem);
   padding-block: clamp(3.25rem, 7vw, 6.1rem) clamp(3rem, 6vw, 5rem);
+}
+
+.hero-copy, .section-heading {
+  background: $text-surface;
+  border-radius: .5rem;
+  box-shadow: 0 0 0 .6rem $text-surface;
 }
 
 .eyebrow {
@@ -359,7 +366,10 @@ main {
 
 .more-heading { margin: 1.7rem 0 .7rem; font-size: 1.25rem; letter-spacing: -.03em; }
 .other-projects { gap: .7rem; }
-.role-list { border-bottom: 1px solid $line; }
+.role-list {
+  border-bottom: 1px solid $line;
+  background: $text-surface;
+}
 
 .role {
   border-top: 1px solid $line;
