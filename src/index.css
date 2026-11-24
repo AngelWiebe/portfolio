@@ -1,5 +1,6 @@
 :root {
   color-scheme: light;
+  scroll-padding-block-start: calc(var(--site-header-height, 0px) + .75rem);
   font-family: Manrope, system-ui, sans-serif;
   font-synthesis: none;
   color: #221b2c;

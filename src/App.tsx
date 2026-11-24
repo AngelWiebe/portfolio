@@ -39,9 +39,7 @@ function App() {
   return (
     <>
       <a className="skip-link" href="#main">{t("portfolio.skip")}</a>
-      <header className="site-header">
-        <Header />
-      </header>
+      <Header />
 
       <main id="main" tabIndex={-1}>
         <section className="hero page-width" aria-labelledby="intro-heading">

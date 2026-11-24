@@ -38,7 +38,14 @@ main {
   &:focus { translate: 0; }
 }
 
-.site-header { border-bottom: 1px solid $line; }
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+  border-bottom: 1px solid $line;
+  background: $paper;
+  box-shadow: 0 3px 12px rgba($ink, .07);
+}
 
 .header-inner {
   min-height: 4.65rem;

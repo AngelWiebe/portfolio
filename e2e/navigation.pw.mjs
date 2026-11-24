@@ -51,3 +51,20 @@ test("keeps the floral backdrop fixed while the content scrolls", async ({ page,
   await expect(hero).not.toBeInViewport();
   expect(await readLayer()).toEqual(background);
 });
+
+test("keeps the header pinned and anchors visible when the French header wraps", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.goto("/");
+  await page.getByRole("button", { name: /^FR / }).click();
+  await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
+
+  const header = page.getByRole("banner");
+  await expect(header).toHaveCSS("position", "sticky");
+  const place = page.getByRole("region", { name: "Projets en vedette" });
+  await page.getByRole("navigation").getByRole("link", { name: "Projets", exact: true }).click();
+  await expect(page).toHaveURL(/#work$/);
+  await expect.poll(async () => (await place.boundingBox()).y)
+    .toBeGreaterThanOrEqual((await header.boundingBox()).height);
+  await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().top)).toBe(0);
+});
