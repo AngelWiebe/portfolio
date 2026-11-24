@@ -424,7 +424,37 @@ main {
   .MuiIconButton-root, .MuiButton-root { color: $accent; min-width: 44px; min-height: 44px; }
   .MuiDialogActions-root { padding: .4rem 1rem; border-top: 1px solid $line; }
   :is(.MuiButton-root, .MuiIconButton-root).Mui-focusVisible { outline: 3px solid $accent; outline-offset: -3px; }
-  video { display: block; width: 100%; height: auto; border-radius: .5rem; margin-bottom: 1rem; }
+  .MuiDialogContent-root:focus-visible {
+    outline: 3px solid $accent;
+    outline-offset: -3px;
+  }
+
+  .preview-player {
+    margin-bottom: 1rem;
+
+    video { display: block; width: 100%; height: auto; border-radius: .5rem; }
+
+    .preview-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .2rem .55rem;
+      margin-top: .4rem;
+
+      input { min-width: 4rem; flex: 1 1 5rem; min-height: 24px; accent-color: $accent; }
+    }
+
+    .preview-time { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: .85rem; }
+
+    &:fullscreen {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      padding: .65rem 1rem;
+      background: $paper;
+
+      video { height: 100%; object-fit: contain; background: #000; }
+    }
+  }
 }
 
 @media (max-width: 58rem) {

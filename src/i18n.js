@@ -26,17 +26,10 @@ const projectLinks = {
 };
 
 i18n
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
     fallbackLng: "en",
-    default: "en",
     interpolation: {
       escapeValue: false,
     },
@@ -74,11 +67,8 @@ i18n
           },
           aria: {
             github_link: "View project source on GitHub",
-            linkedin_link: "Visit my LinkedIn profile",
-            email_link: "Send me an email",
             preview_video: "Watch the project preview video",
             website_link: "Visit the project website",
-            download_resume: "Download Resume",
             language_switcher: "Language switcher",
             switch_english: "EN — English",
             switch_french: "FR — French",
@@ -86,6 +76,15 @@ i18n
           experience: "Experience",
           video_description: "Video description:",
           close_project: "Close",
+          preview_player: {
+            play: "Play",
+            pause: "Pause",
+            seek: "Video position",
+            mute: "Mute",
+            unmute: "Unmute",
+            fullscreen: "Full screen",
+            error: "The video could not play. Try again.",
+          },
           back_to_project: "Back to project",
           download: "Download Resume",
           timeline: "Timeline: ",
@@ -94,7 +93,6 @@ i18n
           location: "Location: ",
           technical_environment: "Technical Environment: ",
           tech_stack: "Tech Stack: ",
-          unsupported: "Your browser does not support the video tag.",
           cards: [
             {
               type: "project",
@@ -376,11 +374,8 @@ i18n
           },
           aria: {
             github_link: "Voir le code source du projet sur GitHub",
-            linkedin_link: "Visitez mon profil LinkedIn",
-            email_link: "Envoyez-moi un email",
             preview_video: "Regardez la vidéo de prévisualisation du projet",
             website_link: "Visitez le site Web du projet",
-            download_resume: "Télécharger le CV",
             language_switcher: "Sélecteur de langue",
             switch_english: "EN — Anglais",
             switch_french: "FR — Français",
@@ -388,6 +383,15 @@ i18n
           experience: "Expérience",
           video_description: "Description de la vidéo :",
           close_project: "Fermer",
+          preview_player: {
+            play: "Lire",
+            pause: "Pause",
+            seek: "Position de lecture",
+            mute: "Couper le son",
+            unmute: "Rétablir le son",
+            fullscreen: "Plein écran",
+            error: "Impossible de lire la vidéo. Réessayez.",
+          },
           back_to_project: "Retour au projet",
           download: "Télécharger le CV",
           timeline: "Chronologie: ",
@@ -396,8 +400,6 @@ i18n
           location: "Location: ",
           technical_environment: "Environnement technique : ",
           tech_stack: "Pile Technologique: ",
-          unsupported:
-            "Votre navigateur ne prend pas en charge la balise vidéo.",
           cards: [
             {
               type: "project",

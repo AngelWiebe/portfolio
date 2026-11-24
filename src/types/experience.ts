@@ -1,4 +1,4 @@
-export default interface experienceInterface {
+export default interface ExperienceEntry {
   type: string;
   company: string;
   title: string;

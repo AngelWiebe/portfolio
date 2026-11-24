@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../src/i18n";
 import Experience from "../src/components/Experience";
-import experienceInterface from "../src/types/experience";
+import type ExperienceEntry from "../src/types/experience";
 import React from "react";
 
-const mockExperience: experienceInterface = {
+const mockExperience: ExperienceEntry = {
   title: "Software Engineer",
   company: "Tech Corp",
   timeline: "January 2020 - Present",

@@ -95,9 +95,10 @@ test("keeps French content within a narrow viewport with doubled text", async ({
 });
 
 test("shows the original French résumé extract in the mobile work dialog", async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+  await page.setViewportSize({ width: 320, height: 844 });
   await page.goto("/");
   await page.getByRole("button", { name: /^FR / }).click();
+  await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
 
   const contractor = page
     .getByRole("region", { name: "Expérience" })
@@ -108,6 +109,15 @@ test("shows the original French résumé extract in the mobile work dialog", asy
   const dialog = page.getByRole("dialog", { name: "Développeuse full stack (travailleuse autonome)" });
   await expect(dialog.getByRole("heading", { name: /^Client : Topstep/ })).toBeVisible();
   await expect(dialog.getByRole("listitem")).toHaveCount(5);
+  const scrollRegion = dialog.getByRole("region", {
+    name: "Développeuse full stack (travailleuse autonome)",
+  });
+  await expect(scrollRegion).toHaveAttribute("tabindex", "0");
+  await scrollRegion.focus();
+  await expect(scrollRegion).toBeFocused();
+  await page.keyboard.press("PageDown");
+  await expect.poll(() => scrollRegion.evaluate((element) => element.scrollTop))
+    .toBeGreaterThan(0);
   await expect(dialog.getByText(/Environnement technique/)).toBeVisible();
   await dialog.getByRole("button", { name: "Fermer" }).click();
   await expect(contractor.getByRole("button")).toBeFocused();

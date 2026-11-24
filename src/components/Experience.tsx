@@ -2,10 +2,10 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
-import experienceInterface from "../types/experience";
+import type ExperienceEntry from "../types/experience";
 
 interface ExperienceProps {
-  experience: experienceInterface;
+  experience: ExperienceEntry;
   onClick: () => void;
 }
 
@@ -40,7 +40,15 @@ const Experience = ({ experience, onClick }: ExperienceProps) => {
           <ArrowOutwardIcon fontSize="inherit" />
         </span>
       </div>
-      <button className="entry-button" type="button" aria-labelledby={titleId} onClick={onClick} />
+      <button
+        className="entry-button"
+        type="button"
+        aria-labelledby={titleId}
+        onClick={(event) => {
+          event.currentTarget.focus({ preventScroll: true });
+          onClick();
+        }}
+      />
     </article>
   );
 };

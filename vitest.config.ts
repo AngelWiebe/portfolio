@@ -1,13 +1,12 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'jsdom', // Use jsdom for DOM-related tests
-    setupFiles: './setupTests.ts', // Reference your setup file here
-    globals: true, // Make Vitest globals available
+    environment: 'jsdom',
+    setupFiles: './setupTests.ts',
+    globals: true,
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx,js}'],

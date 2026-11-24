@@ -23,15 +23,17 @@ for (const { title, asset, description } of [
     await expect(video).toHaveAccessibleDescription(
       new RegExp(description, "i"),
     );
-    await expect(video.locator("source")).toHaveAttribute(
+    await expect(video).toHaveAttribute(
       "src",
       new RegExp(`/assets/${asset}-preview-[^/]+\\.mp4$`),
     );
 
-    await video.evaluate((element) => element.play());
+    const player = page.getByRole("dialog", { name: previewName });
+    await player.getByRole("button", { name: "Play", exact: true }).click();
     await expect.poll(() => video.evaluate((element) => element.currentTime))
       .toBeGreaterThan(0.1);
 
+    await player.getByRole("slider", { name: "Video position" }).focus();
     await page.keyboard.press("Escape");
     await page.keyboard.press("Escape");
     await expect(page.getByRole("dialog")).toHaveCount(0);

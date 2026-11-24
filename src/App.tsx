@@ -9,26 +9,26 @@ import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ExperienceModal from "./components/ExperienceModal";
-import experienceInterface from "./types/experience";
+import type ExperienceEntry from "./types/experience";
 import { toolkit } from "./toolkit";
 
 function App() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage;
   const [selectedExperience, setSelectedExperience] =
-    useState<experienceInterface | null>(null);
+    useState<ExperienceEntry | null>(null);
 
   useEffect(() => {
     document.documentElement.lang = language ?? "en";
   }, [language]);
 
   const entries = t("cards", { returnObjects: true });
-  const experiences: experienceInterface[] = Array.isArray(entries) ? entries : [];
+  const experiences: ExperienceEntry[] = Array.isArray(entries) ? entries : [];
   const projects = experiences.filter((entry) => entry.type === "project");
   const featured = projects.filter((project) => project.featured_image);
   const otherProjects = projects.filter((project) => !project.featured_image);
   const roles = experiences.filter((entry) => entry.type === "job");
-  const renderEntry = (entry: experienceInterface) => (
+  const renderEntry = (entry: ExperienceEntry) => (
     <Experience
       key={`${entry.title}-${entry.timeline}`}
       experience={entry}

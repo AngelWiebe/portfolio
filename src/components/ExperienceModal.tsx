@@ -9,16 +9,17 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useId, useState } from "react";
+import { useId, useState, type MouseEvent } from "react";
 
-import experienceInterface from "../types/experience";
+import PreviewPlayer from "./PreviewPlayer";
+import type ExperienceEntry from "../types/experience";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import PreviewIcon from "@mui/icons-material/Preview";
 import LinkIcon from "@mui/icons-material/Link";
 
 interface ExperienceModalProps {
   detailsOpen: boolean;
-  experience: experienceInterface | null;
+  experience: ExperienceEntry | null;
   handleDetailsClose: () => void;
 }
 
@@ -40,7 +41,8 @@ const ExperienceModal = ({
   const location = resume?.location ?? experience.location;
   const techStack = resume?.technicalEnvironment ?? experience.tech_stack;
 
-  const handleVideoOpen = () => {
+  const handleVideoOpen = (event: MouseEvent<HTMLButtonElement>) => {
+    event.currentTarget.focus({ preventScroll: true });
     setVideoOpen(true);
   };
 
@@ -55,11 +57,15 @@ const ExperienceModal = ({
         onClose={handleDetailsClose}
         maxWidth="md"
         fullWidth
-        className={`modal ${experience.type === "job" ? "blue" : "pink"}`}
+        className="modal"
         aria-labelledby={detailsTitleId}
         transitionDuration={reduceMotion ? 0 : undefined}
       >
-        <DialogContent className="modal">
+        <DialogContent
+          tabIndex={resume ? 0 : undefined}
+          role={resume ? "region" : undefined}
+          aria-labelledby={resume ? detailsTitleId : undefined}
+        >
           <Typography component="h2" variant="h6" id={detailsTitleId}>
             {resume?.title ?? experience.title}
           </Typography>
@@ -163,7 +169,7 @@ const ExperienceModal = ({
         </DialogActions>
       </Dialog>
 
-      {videoOpen && (
+      {videoOpen && experience.preview && (
         <Dialog
           open
           onClose={handleVideoClose}
@@ -173,22 +179,11 @@ const ExperienceModal = ({
           slotProps={{ paper: { "aria-label": t("aria.preview_video") } }}
           transitionDuration={reduceMotion ? 0 : undefined}
         >
-          <DialogContent className="modal">
-            <video
-              width="100%"
-              height="500"
-              controls
-              muted
-              playsInline
-              aria-label={t("aria.preview_video")}
-              aria-describedby={
-                experience.preview_description ? videoDescriptionId : undefined
-              }
-              data-testid="video"
-            >
-              <source src={experience.preview || undefined} type="video/mp4" />
-              {t("unsupported")}
-            </video>
+          <DialogContent>
+            <PreviewPlayer
+              src={experience.preview}
+              descriptionId={experience.preview_description ? videoDescriptionId : undefined}
+            />
             {experience.preview_description && (
               <Typography id={videoDescriptionId}>
                 <strong>{t("video_description")}</strong>{" "}

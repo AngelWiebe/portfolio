@@ -1,5 +1,4 @@
-// setupTests.ts
-import '@testing-library/jest-dom'; // If you haven't done this yet, ensure jest-dom is imported for custom matchers
+import '@testing-library/jest-dom/vitest';
 
 // Polyfill for matchMedia
 global.matchMedia = global.matchMedia || function() {
