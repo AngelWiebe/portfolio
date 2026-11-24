@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import "./App.scss";
+import toolkitImage from "./assets/toolkit-circuit.jpg";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -72,6 +73,7 @@ function App() {
           </div>
 
           <aside className="focus-panel" aria-labelledby="focus-heading">
+            <img className="focus-illustration" src={toolkitImage} alt="" width="1080" height="360" />
             <h2 id="focus-heading" className="eyebrow">{t("portfolio.toolkit")}</h2>
             <dl>
               {Object.entries(toolkit).map(([category, technologies]) => (

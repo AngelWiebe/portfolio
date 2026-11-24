@@ -20,6 +20,10 @@ test("serves portfolio content and search metadata without JavaScript", async ({
     "href",
     "https://angelwiebe.github.io/true-depth-capital/",
   );
+  await expect(page.getByRole("link", { name: "WildBalance" })).toHaveAttribute(
+    "href",
+    "https://github.com/AngelWiebe/wildbalance",
+  );
   await expect(page.getByRole("link", { name: "Charmed Code" })).toHaveAttribute(
     "href",
     "https://angelwiebe.github.io/charmed-code/",

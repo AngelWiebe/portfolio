@@ -18,6 +18,7 @@ main {
 .page-width {
   width: min(100% - 3rem, 70rem);
   margin-inline: auto;
+  overflow-wrap: anywhere;
 }
 
 .skip-link {
@@ -30,6 +31,8 @@ main {
   border-radius: .5rem;
   background: $ink;
   color: white;
+
+  max-width: calc(100% - 1.5rem);
 
   &:focus { translate: 0; }
 }
@@ -83,7 +86,7 @@ main {
   &:hover { color: $accent; text-decoration: underline; }
 }
 
-.header-actions { gap: .65rem; }
+.header-actions { min-width: 0; gap: .65rem; }
 
 .language-switcher {
   display: flex;
@@ -227,6 +230,16 @@ main {
     pointer-events: none;
   }
 
+  .focus-illustration {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+    border: 1px solid #e7cbf459;
+    border-radius: .65rem;
+    margin-bottom: .95rem;
+  }
+
   .eyebrow { color: #f8cbb9; }
   dl { margin: 1.25rem 0 0; }
   dl > div { padding-block: .6rem; border-top: 1px solid #e7cbf459; }
@@ -294,6 +307,7 @@ main {
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center top;
   border-radius: .85rem .85rem 0 0;
   background: $lavender;
 }

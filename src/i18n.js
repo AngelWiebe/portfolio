@@ -7,7 +7,9 @@ import godotPreview from "./assets/previews/godot-preview.mp4";
 import gnrPreview from "./assets/previews/gnr-preview.mp4";
 import resumePreview from "./assets/previews/resume-preview.mp4";
 import charmedStill from "./assets/project-stills/charmed-code.jpg";
-import trueDepthStill from "./assets/project-stills/true-depth-capital.jpg";
+import wildBalanceStill from "./assets/project-stills/wildbalance.jpg";
+
+const wildBalanceRepo = "https://github.com/AngelWiebe/wildbalance";
 
 const projectSites = {
   charmedCode: "https://angelwiebe.github.io/charmed-code/",
@@ -63,7 +65,7 @@ i18n
             bio: "I am Angel Wiebe, a dedicated software developer with over 9 years of experience, specializing in front-end technologies while continuously expanding my skills in back-end development. I hold a diploma in Software & Database Development from Robertson Career College, where I graduated with academic excellence. My tech stack includes JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker, and Azure DevOps, among others. I am passionate about creating innovative solutions and delivering high-quality code, eager to contribute my expertise to exciting projects.",
           },
           aria: {
-            github_link: "Visit my GitHub profile",
+            github_link: "View project source on GitHub",
             linkedin_link: "Visit my LinkedIn profile",
             email_link: "Send me an email",
             preview_video: "Watch the project preview video",
@@ -88,8 +90,17 @@ i18n
           cards: [
             {
               type: "project",
+              title: "WildBalance",
+              featured_image: wildBalanceStill,
+              timeline: "2026",
+              tech_stack: "Godot, Go, WebSockets",
+              details:
+                "A 3D forest stewardship game in Godot with a Go simulation over WebSockets. Manage deer, wolves, and meadow health through four seasons.",
+              git_link: wildBalanceRepo,
+            },
+            {
+              type: "project",
               title: "True Depth Capital",
-              featured_image: trueDepthStill,
               timeline: "2026",
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:
@@ -364,7 +375,7 @@ i18n
             bio: "Je suis Angel Wiebe, une développeuse de logiciels dévouée avec plus de 9 ans d'expérience, spécialisé dans les technologies front-end tout en continuant à développer mes compétences en back-end. Je possède un diplôme en développement de logiciels et de bases de données de Robertson Career College, où j'ai obtenue mon diplôme avec excellence académique. Mon ensemble de compétences techniques comprend JavaScript, React, TypeScript, React Native, Node.js, Angular, PHP, Laravel, MongoDB, MySQL, Git, Docker et Azure DevOps, parmi d'autres. Je suis passionnée par la création de solutions innovantes et la livraison d'un code de haute qualité, désireuse de contribuer mon expertise à des projets passionnants.",
           },
           aria: {
-            github_link: "Visitez mon profil GitHub",
+            github_link: "Voir le code source du projet sur GitHub",
             linkedin_link: "Visitez mon profil LinkedIn",
             email_link: "Envoyez-moi un email",
             preview_video: "Regardez la vidéo de prévisualisation du projet",
@@ -390,8 +401,17 @@ i18n
           cards: [
             {
               type: "project",
+              title: "WildBalance",
+              featured_image: wildBalanceStill,
+              timeline: "2026",
+              tech_stack: "Godot, Go, WebSockets",
+              details:
+                "Un jeu de gestion forestière en 3D créé avec Godot, qui communique par WebSocket avec une simulation en Go. Gérez les cerfs, les loups et la santé des prairies au fil des quatre saisons.",
+              git_link: wildBalanceRepo,
+            },
+            {
+              type: "project",
               title: "True Depth Capital",
-              featured_image: trueDepthStill,
               timeline: "2026",
               tech_stack: "HTML, CSS, JavaScript, Vite",
               details:

@@ -67,15 +67,23 @@ test("keeps French content within a narrow viewport with doubled text", async ({
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/");
   await page.getByRole("button", { name: /^FR / }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
   await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
+  await page.evaluate(() => document.fonts.ready);
 
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect.poll(() =>
-    page.evaluate(() => document.documentElement.scrollWidth),
-  ).toBe(320);
+  await expect.poll(() => page.evaluate(() => {
+    const viewportWidth = document.documentElement.clientWidth;
+    const overflow = document.documentElement.scrollWidth - viewportWidth;
+    if (overflow <= 0) return 0;
+    const overflowingElements = [...document.querySelectorAll("body *")]
+      .filter((element) => element.getBoundingClientRect().right > viewportWidth + 1)
+      .map((element) => element.getAttribute("class") || element.tagName);
+    return { overflow, overflowingElements };
+  })).toBe(0);
 
   const cards = page.getByRole("main").getByRole("article");
-  await expect(cards).toHaveCount(14);
+  await expect(cards).toHaveCount(15);
   await expect.poll(() =>
     cards.evaluateAll((entries) => entries.every((entry) => {
       const bottom = entry.getBoundingClientRect().bottom;

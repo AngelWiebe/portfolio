@@ -44,21 +44,31 @@ describe("App Component", () => {
     const projects = screen.getByRole("region", { name: "Selected work" });
     const experience = screen.getByRole("region", { name: "Experience" });
 
-    expect(within(projects).getAllByRole("article")).toHaveLength(9);
+    expect(within(projects).getAllByRole("article")).toHaveLength(10);
     expect(within(experience).getAllByRole("article")).toHaveLength(5);
     expect(within(projects).getByRole("button", { name: "Movie Database" })).toBeInTheDocument();
     expect(within(experience).getByRole("button", { name: "Intern" })).toBeInTheDocument();
   });
 
-  test("features True Depth Capital and Charmed Code first, with project screenshots", () => {
+  test("features WildBalance and Charmed Code first, with project screenshots", () => {
     const work = within(screen.getByRole("region", { name: "Selected work" }));
     const cards = work.getAllByRole("article");
 
     expect(cards.slice(0, 2).map((card) => card.querySelector("h3")?.textContent))
-      .toEqual(["True Depth Capital", "Charmed Code"]);
+      .toEqual(["WildBalance", "Charmed Code"]);
     expect(cards.slice(0, 2).every((card) => card.querySelector("img")?.hasAttribute("src"))).toBe(true);
     expect(work.getByRole("button", { name: "Virtual Resume" })).toBeInTheDocument();
     expect(work.getByRole("button", { name: "Google Map Example" })).toBeInTheDocument();
+  });
+
+  test("links WildBalance to its source repository", async () => {
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("button", { name: "WildBalance" }));
+    const dialog = within(screen.getByRole("dialog", { name: "WildBalance" }));
+    expect(dialog.getByRole("link", { name: "View project source on GitHub" })).toHaveAttribute(
+      "href",
+      "https://github.com/AngelWiebe/wildbalance",
+    );
   });
 
   test.each([

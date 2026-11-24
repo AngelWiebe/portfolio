@@ -3,13 +3,15 @@ import { expect, test } from "@playwright/test";
 test("keyboard users can skip the header and tab between projects", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  const skipLink = page.getByRole("link", { name: "Skip to main content" });
+  await expect(skipLink).toBeAttached();
   await page.keyboard.press("Tab");
-  await expect(page.getByRole("link", { name: "Skip to main content" })).toBeFocused();
+  await expect(skipLink).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("main")).toBeFocused();
 
   const work = page.getByRole("region", { name: "Selected work" });
-  await work.getByRole("button", { name: "True Depth Capital" }).focus();
+  await work.getByRole("button", { name: "WildBalance" }).focus();
   await page.keyboard.press("Tab");
   await expect(work.getByRole("button", { name: "Charmed Code" })).toBeFocused();
 });
