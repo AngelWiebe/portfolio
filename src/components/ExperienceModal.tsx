@@ -38,6 +38,7 @@ const ExperienceModal = ({
   const { resume } = experience;
   const company = resume?.company ?? experience.company;
   const location = resume?.location ?? experience.location;
+  const techStack = resume?.technicalEnvironment ?? experience.tech_stack;
 
   const handleVideoOpen = () => {
     setVideoOpen(true);
@@ -110,12 +111,12 @@ const ExperienceModal = ({
             <Typography variant="body1">{experience.details}</Typography>
           )}
 
-          {(resume ? resume.technicalEnvironment : experience.tech_stack) && (
+          {techStack && (
             <Typography>
               <Box component="span" fontWeight="bold">
-                {t(resume ? "technical_environment" : "tech_stack")}
+                {t(resume?.technicalEnvironment ? "technical_environment" : "tech_stack")}
               </Box>
-              {resume ? resume.technicalEnvironment : experience.tech_stack}
+              {techStack}
             </Typography>
           )}
 

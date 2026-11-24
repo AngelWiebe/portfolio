@@ -12,6 +12,7 @@ interface ExperienceProps {
 const Experience = ({ experience, onClick }: ExperienceProps) => {
   const { t } = useTranslation();
   const titleId = useId();
+  const techStack = experience.resume?.technicalEnvironment ?? experience.tech_stack;
   const isJob = experience.type === "job";
   const isFeatured = Boolean(experience.featured_image);
   const Heading = !isJob && !isFeatured ? "h4" : "h3";
@@ -29,9 +30,9 @@ const Experience = ({ experience, onClick }: ExperienceProps) => {
         <Heading id={titleId}>{experience.title}</Heading>
         {experience.company && <p className="entry-company" data-testid="company">{experience.company}</p>}
         <p className="entry-summary">{experience.summary ?? experience.details.split(". ")[0].replace(/\.?$/, ".")}</p>
-        {experience.tech_stack && (
+        {techStack && (
           <p className="entry-stack" data-testid="tech_stack">
-            {experience.tech_stack.split(", ").slice(0, isJob ? 4 : 3).join(" · ")}
+            {techStack.split(", ").join(" · ")}
           </p>
         )}
         <span className="entry-action" aria-hidden="true">

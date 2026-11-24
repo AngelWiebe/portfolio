@@ -6,7 +6,7 @@ export default interface experienceInterface {
   timeline: string;
   work_type: string;
   details: string;
-  tech_stack: string;
+  tech_stack?: string;
   preview: string | null;
   preview_description?: string;
   featured_image?: string;

@@ -98,6 +98,23 @@ describe("App Component", () => {
     expect(dialog.getByText(/Technical Environment:/)).toBeInTheDocument();
   });
 
+  test("keeps the full technical environment visible on work-history cards", () => {
+    const history = within(screen.getByRole("region", { name: "Experience" }));
+    const contractor = within(history.getByText("Contractor", { exact: true }).closest("article")!);
+    const stack = contractor.getByTestId("tech_stack");
+    expect(stack).toHaveTextContent("Expo");
+    expect(stack).toHaveTextContent("GraphQL");
+    expect(stack).toHaveTextContent("Cursor");
+  });
+
+  test("shows the project stack with the billing system’s résumé extract", async () => {
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("button", { name: "Internal Billing System" }));
+    const dialog = within(screen.getByRole("dialog", { name: "Internal Billing System" }));
+    expect(dialog.getByText("React, Laravel")).toBeInTheDocument();
+    expect(dialog.getByRole("listitem")).toHaveTextContent(/replaced manual billing work/);
+  });
+
   test("opens the selected project's details and restores focus when dismissed", async () => {
     const user = userEvent.setup();
     const card = screen.getByRole("button", { name: "Virtual Resume" });

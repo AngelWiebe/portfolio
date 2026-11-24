@@ -101,7 +101,7 @@ i18n
               title: "WildBalance",
               featured_image: wildBalanceStill,
               timeline: "2026",
-              tech_stack: "Godot, Go, WebSockets",
+              tech_stack: "Godot, GDScript, Go, WebSockets (Gorilla)",
               details:
                 "A 3D forest stewardship game in Godot with a Go simulation over WebSockets. Manage deer, wolves, and meadow health through four seasons.",
               ...projectLinks.wildBalance,
@@ -110,7 +110,7 @@ i18n
               type: "project",
               title: "True Depth Capital",
               timeline: "2026",
-              tech_stack: "HTML, CSS, JavaScript, Vite",
+              tech_stack: "HTML, CSS, JavaScript, Vite, Formspree, Vitest, GitHub Pages",
               details:
                 "A site for Canadian vehicle sourcing that lets licensed U.S. dealers submit wholesale inquiries.",
               ...projectLinks.trueDepth,
@@ -120,7 +120,7 @@ i18n
               title: "Charmed Code",
               featured_image: charmedStill,
               timeline: "2026",
-              tech_stack: "React, Vite, GSAP",
+              tech_stack: "React, JavaScript, CSS, Vite, GSAP, Formspree, Playwright, GitHub Pages",
               details:
                 "A marketing site for an Alberta web design and development studio, with featured work and a project inquiry form.",
               ...projectLinks.charmedCode,
@@ -129,7 +129,7 @@ i18n
               type: "project",
               title: "DLR Consulting Ltd.",
               timeline: "2026",
-              tech_stack: "React, TypeScript, Vite, i18next",
+              tech_stack: "React, TypeScript, CSS, Vite, i18next, Lucide, GitHub Pages",
               details:
                 "A bilingual site for a negotiation and representation practice, covering services, professional coverage, payment terms, and contact information.",
               ...projectLinks.dlr,
@@ -168,15 +168,13 @@ i18n
               work_type: "Remote",
               details:
                 "Delivered solutions across projects, focusing on backend development with Golang, Node.js, and SQL. Integrated RESTful APIs and microservices for high performance and scalability. Gained advanced proficiency in Golang, enhancing application efficiency. Utilized Git, Docker, and CI/CD pipelines for streamlined deployment.",
-              tech_stack:
-                "Javascript, React Native, React, Typescript, HTML5/SCSS, MySQL, Golang, Node.JS, Git, Docker, Visual Studio",
             },
             {
               type: "project",
               title: "Virtual Resume",
               summary: "An interactive résumé built in Godot. Explore a 3D castle to discover my work history and skills.",
               timeline: "2024",
-              tech_stack: "GD Script",
+              tech_stack: "Godot, GDScript",
               details:
                 "This game, developed in Godot, serves as a creative way to showcase my resume. The walls of the castle display my professional experience, skills, and achievements, turning a simple resume into an immersive and interactive experience. I used GDScript to design smooth gameplay mechanics and dynamic visuals, emphasizing my skills in game development while creatively presenting my career journey.",
               preview: resumePreview,
@@ -189,7 +187,7 @@ i18n
               title: "Google Map Example",
               summary: "A searchable therapist directory with map pins, location filters, and results that update together.",
               timeline: "2024",
-              tech_stack: "React, Typescript",
+              tech_stack: "React, TypeScript, Vite, Material UI, Google Maps APIs, Papa Parse, Jest",
               details:
                 "This site, developed with React and TypeScript, features a clean, modern interface designed for smooth user interactions. A Google search bar integrates with their API for real-time data fetching, and the mobile-first layout adapts seamlessly across devices.",
               preview: googlePreview,
@@ -222,15 +220,13 @@ i18n
               work_type: "Remote",
               details:
                 "Led project teams, managing tasks, and client interactions for successful project delivery. Developed deployment pipelines and utilized technologies including a custom language (Honey), NodeJS, React, and TypeScript. Implemented development tools such as Git, Azure DevOps, and Docker",
-              tech_stack:
-                "Javascript, React, Typescript, HTML5/SCSS, MongoDB, Honey, Git, Docker, Azure Dev Ops, Visual Studio",
             },
             {
               type: "project",
 
               title: "Godot Tutorial",
               timeline: "2019",
-              tech_stack: "GD Script",
+              tech_stack: "Godot, GDScript",
               details:
                 "This project, developed in Godot, serves as a showcase of my game development skills. It highlights my ability to create a 2D game with smooth animations, responsive character controls, and dynamic mechanics. Using GDScript, I implemented complex interactions, collision detection, and level design, focusing on clean and efficient code.",
               preview: godotPreview,
@@ -246,7 +242,7 @@ i18n
                 company: "Tactica Interactive",
                 location: "Winnipeg, Manitoba",
                 timeline: "October 2020 – March 2022",
-                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode",
+                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode, iOS, Android",
                 sections: [
                   {
                     bullets: [
@@ -261,8 +257,6 @@ i18n
               work_type: "Remote",
               details:
                 "Spearheaded front-end development for custom app development on iOS and Android platforms using React Native and was responsible for deployments to both app stores. Contributed to back-end development with Ruby and utilized tools like Git, Android Studio, and Xcode",
-              tech_stack:
-                "Javascript, React Native, React, Accessibility, HTML5/SCSS, MySQL, Ruby, Git, Docker, Android Studio, XCode",
             },
             {
               type: "project",
@@ -277,7 +271,7 @@ i18n
               type: "project",
               title: "G & R Logging",
               timeline: "2016",
-              tech_stack: "Javascript, HTML, CSS",
+              tech_stack: "HTML, CSS, JavaScript, jQuery, Bootstrap, Modernizr, Slideout, GitHub Pages",
               details:
                 "I created this website during the first year of my career as a Christmas gift for my father's company. It was an opportunity to sharpen my CSS skills, focusing on responsive design and user interface elements while delivering a meaningful project for my family.",
               preview: gnrPreview,
@@ -294,7 +288,7 @@ i18n
                 company: "Bold Commerce",
                 location: "Winnipeg, Manitoba",
                 timeline: "February 2016 – October 2020",
-                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Git, Docker",
+                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Shopify, Git, Docker",
                 sections: [
                   {
                     bullets: [
@@ -313,14 +307,12 @@ i18n
               work_type: "Hybrid",
               details:
                 "Managed full-stack web app development and database management, specializing in E-Commerce platforms. Employed back-end technologies including SQL (including SQL programming) and PHP (Laravel), along with front-end technologies such as HTML5/CSS3, JavaScript, and React. Utilized Liquid templating language for Shopify platforms and development tools like Git and Docker",
-              tech_stack:
-                "Liquid, Javascript, JQuery, React, HTML5/CSS3, Angular, MySQL, PHP, Laravel, Git, Docker, Azure Dev Ops, PHP Storm",
             },
             {
               type: "project",
               title: "Movie Database",
               timeline: "2015",
-              tech_stack: "C#, ASP.Net",
+              tech_stack: "C#, ASP.NET, ADO.NET, SQL Server",
               details:
                 "Developed a media database project during my studies to enhance my skills in ASP.NET and C# through practical, hands-on experience outside the classroom. The project features a full CRUD user interface, allowing for comprehensive management of media entries.",
               git_link: "https://github.com/AngelWiebe/movie-db",
@@ -412,7 +404,7 @@ i18n
               title: "WildBalance",
               featured_image: wildBalanceStill,
               timeline: "2026",
-              tech_stack: "Godot, Go, WebSockets",
+              tech_stack: "Godot, GDScript, Go, WebSockets (Gorilla)",
               details:
                 "Un jeu de gestion forestière en 3D créé avec Godot, qui communique par WebSocket avec une simulation en Go. Gérez les cerfs, les loups et la santé des prairies au fil des quatre saisons.",
               ...projectLinks.wildBalance,
@@ -421,7 +413,7 @@ i18n
               type: "project",
               title: "True Depth Capital",
               timeline: "2026",
-              tech_stack: "HTML, CSS, JavaScript, Vite",
+              tech_stack: "HTML, CSS, JavaScript, Vite, Formspree, Vitest, GitHub Pages",
               details:
                 "Site d’approvisionnement en véhicules canadiens qui permet aux concessionnaires américains agréés de soumettre des demandes d’achat en gros.",
               ...projectLinks.trueDepth,
@@ -431,7 +423,7 @@ i18n
               title: "Charmed Code",
               featured_image: charmedStill,
               timeline: "2026",
-              tech_stack: "React, Vite, GSAP",
+              tech_stack: "React, JavaScript, CSS, Vite, GSAP, Formspree, Playwright, GitHub Pages",
               details:
                 "Site vitrine d’un studio albertain de conception et de développement web, avec des projets en vedette et un formulaire de demande.",
               ...projectLinks.charmedCode,
@@ -440,7 +432,7 @@ i18n
               type: "project",
               title: "DLR Consulting Ltd.",
               timeline: "2026",
-              tech_stack: "React, TypeScript, Vite, i18next",
+              tech_stack: "React, TypeScript, CSS, Vite, i18next, Lucide, GitHub Pages",
               details:
                 "Site bilingue d’un cabinet de négociation et de représentation qui présente ses services, sa couverture professionnelle, ses modalités de paiement et ses coordonnées.",
               ...projectLinks.dlr,
@@ -479,15 +471,13 @@ i18n
               work_type: "À distance",
               details:
                 "A livré des solutions à travers des projets, se concentrant sur le développement back-end avec Golang, Node.js et SQL. Intégration d'API RESTful et de microservices pour des performances et une évolutivité élevées. A acquis une maîtrise avancée de Golang, améliorant l'efficacité des applications. Utilisation de Git, Docker, et des pipelines CI/CD pour un déploiement rationalisé.",
-              tech_stack:
-                "Javascript, React Native, React, Typescript, HTML5/SCSS, MySQL, Golang, Node.JS, Git, Docker, Visual Studio",
             },
             {
               type: "project",
               title: "CV Virtuel",
               summary: "Un CV interactif réalisé avec Godot. Explorez un château en 3D pour découvrir mon parcours et mes compétences.",
               timeline: "2024",
-              tech_stack: "GD Script",
+              tech_stack: "Godot, GDScript",
               details:
                 "Ce jeu, développé dans Godot, offre un moyen créatif de présenter mon CV. Les murs du château affichent mon expérience professionnelle, mes compétences et mes réalisations, transformant un simple CV en une expérience immersive et interactive. J'ai utilisé GDScript pour concevoir des mécaniques de jeu fluides, des transitions de niveau sans faille et des visuels dynamiques, mettant en avant mes compétences en développement tout en présentant de manière créative mon parcours professionnel.",
               preview: resumePreview,
@@ -500,7 +490,7 @@ i18n
               title: "Exemple de Google Map",
               summary: "Un répertoire de thérapeutes avec des repères sur la carte, des filtres géographiques et des résultats synchronisés.",
               timeline: "2024",
-              tech_stack: "React, Typescript",
+              tech_stack: "React, TypeScript, Vite, Material UI, Google Maps APIs, Papa Parse, Jest",
               details:
                 "Ce site, développé avec React et TypeScript, présente une interface moderne et épurée, conçue pour des interactions utilisateur fluides. Une barre de recherche Google est intégrée à leur API pour la récupération de données en temps réel, et la mise en page mobile-first s'adapte parfaitement aux différents appareils.",
               preview: googlePreview,
@@ -533,14 +523,12 @@ i18n
               work_type: "À distance",
               details:
                 "A dirigé des équipes de projet, gérant les tâches et les interactions avec les clients pour une livraison réussie des projets. A développé des pipelines de déploiement et utilisé des technologies incluant un langage personnalisé (Honey), NodeJS, React, et TypeScript. A mis en œuvre des outils de développement comme Git, Azure DevOps, et Docker",
-              tech_stack:
-                "Javascript, React, Typescript, HTML5/SCSS, MongoDB, Honey, Git, Docker, Azure Dev Ops, Visual Studio",
             },
             {
               type: "project",
               title: "Tutoriel Godot",
               timeline: "2019",
-              tech_stack: "GD Script",
+              tech_stack: "Godot, GDScript",
               details:
                 "Ce projet, développé avec Godot, sert de vitrine pour mes compétences en développement de jeux. Il met en avant ma capacité à créer un jeu 2D avec des animations fluides, des contrôles de personnage réactifs et des mécaniques dynamiques. En utilisant GDScript, j'ai implémenté des interactions complexes, la détection de collisions et la conception de niveaux, en mettant l'accent sur un code propre et efficace.",
               preview: godotPreview,
@@ -556,7 +544,7 @@ i18n
                 company: "Tactica Interactive",
                 location: "Winnipeg, Manitoba",
                 timeline: "Octobre 2020 – mars 2022",
-                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode",
+                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode, iOS, Android",
                 sections: [
                   {
                     bullets: [
@@ -571,8 +559,6 @@ i18n
               work_type: "À distance",
               details:
                 "A dirigé le développement front-end pour le développement d'applications personnalisées sur les plateformes iOS et Android en utilisant React Native et a été responsable des déploiements sur les deux magasins d'applications. A contribué au développement back-end avec Ruby et a utilisé des outils comme Git, Android Studio, et Xcode",
-              tech_stack:
-                "Javascript, React Native, React, HTML5/SCSS, Accessibilité, MySQL, Ruby, Git, Docker, Android Studio, XCode",
             },
             {
               type: "project",
@@ -587,7 +573,7 @@ i18n
               type: "project",
               title: "G & R Logging",
               timeline: "2016",
-              tech_stack: "HTML, CSS, Javascript",
+              tech_stack: "HTML, CSS, JavaScript, jQuery, Bootstrap, Modernizr, Slideout, GitHub Pages",
               details:
                 "J'ai créé ce site web pendant la première année de ma carrière comme cadeau de Noël pour l'entreprise de mon père. C'était une occasion de perfectionner mes compétences en CSS, en me concentrant sur la conception réactive et les éléments de l'interface utilisateur tout en réalisant un projet significatif pour ma famille.",
               preview: gnrPreview,
@@ -604,7 +590,7 @@ i18n
                 company: "Bold Commerce",
                 location: "Winnipeg, Manitoba",
                 timeline: "Février 2016 – octobre 2020",
-                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Git, Docker",
+                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Shopify, Git, Docker",
                 sections: [
                   {
                     bullets: [
@@ -623,14 +609,12 @@ i18n
               work_type: "Hybride",
               details:
                 "A géré le développement complet d'applications web et la gestion de bases de données, en se spécialisant dans les plateformes de commerce électronique. A utilisé des technologies back-end incluant SQL (y compris la programmation SQL) et PHP (Laravel), ainsi que des technologies front-end telles que HTML5/CSS3, JavaScript, et React. A utilisé le langage de template Liquid pour les plateformes Shopify et des outils de développement comme Git et Docker",
-              tech_stack:
-                "Liquid, Javascript, JQuery, React, HTML5/CSS3, Angular, MySQL, PHP, Laravel, Git, Docker, Azure Dev Ops, PHP Storm",
             },
             {
               type: "project",
               title: "Base de Données de Films",
               timeline: "2015",
-              tech_stack: "C#, ASP.Net",
+              tech_stack: "C#, ASP.NET, ADO.NET, SQL Server",
               details:
                 "Développé un projet de base de données média pendant mes études pour améliorer mes compétences en ASP.NET et C# grâce à une expérience pratique en dehors de la classe. Le projet comprend une interface utilisateur complète CRUD, permettant une gestion complète des entrées médias.",
               git_link: "https://github.com/AngelWiebe/movie-db",
