@@ -74,14 +74,14 @@ test("keeps French content within a narrow viewport with doubled text", async ({
     page.evaluate(() => document.documentElement.scrollWidth),
   ).toBe(320);
 
-  const cards = page.getByRole("region", { name: "Expérience" }).getByRole("article");
-  await expect(cards).toHaveCount(1);
+  const cards = page.getByRole("main").getByRole("article");
+  await expect(cards).toHaveCount(11);
   await expect.poll(() =>
-    cards.first().evaluate((card) => {
-      const bottom = card.getBoundingClientRect().bottom;
-      return [...card.querySelectorAll("p")].every(
+    cards.evaluateAll((entries) => entries.every((entry) => {
+      const bottom = entry.getBoundingClientRect().bottom;
+      return [...entry.querySelectorAll("p")].every(
         (paragraph) => paragraph.getBoundingClientRect().bottom <= bottom,
       );
-    }),
+    })),
   ).toBe(true);
 });

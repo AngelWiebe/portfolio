@@ -57,7 +57,7 @@ describe("Experience Component", () => {
   test("renders tech stack", () => {
     const techStackElement = screen.getByTestId("tech_stack");
     expect(techStackElement).toBeInTheDocument();
-    expect(techStackElement).toHaveTextContent(mockExperience.tech_stack);
+    expect(techStackElement).toHaveTextContent("React · Node.js · MongoDB");
   });
 
   test("calls onClick function when card is clicked", () => {

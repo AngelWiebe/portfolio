@@ -1,5 +1,5 @@
 // src/components/App.test.tsx
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../src/App";
 import { I18nextProvider } from "react-i18next";
@@ -25,22 +25,14 @@ describe("App Component", () => {
     expect(footerElement).toBeInTheDocument();
   });
 
-  test("renders Experience Slider", () => {
-    const experienceElement = screen.getByRole("region", {
-      name: /experience/i,
-    });
-    expect(experienceElement).toBeInTheDocument();
-  });
+  test("shows projects and work history as separate, complete collections", () => {
+    const projects = screen.getByRole("region", { name: "Selected work" });
+    const experience = screen.getByRole("region", { name: "Experience" });
 
-  test("disables offscreen slides while keeping visible slides interactive", () => {
-    const carousel = screen.getByRole("region", { name: /experience/i });
-    const hidden = carousel.querySelectorAll('.slick-slide[aria-hidden="true"]');
-    const visible = carousel.querySelectorAll('.slick-slide[aria-hidden="false"]');
-
-    expect(hidden.length).toBeGreaterThan(0);
-    expect(visible.length).toBeGreaterThan(0);
-    hidden.forEach((slide) => expect(slide).toHaveAttribute("inert"));
-    visible.forEach((slide) => expect(slide).not.toHaveAttribute("inert"));
+    expect(within(projects).getAllByRole("article")).toHaveLength(6);
+    expect(within(experience).getAllByRole("article")).toHaveLength(5);
+    expect(within(projects).getByRole("button", { name: "Movie Database" })).toBeInTheDocument();
+    expect(within(experience).getByRole("button", { name: "Intern" })).toBeInTheDocument();
   });
 
   test("opens the selected project's details and restores focus when dismissed", async () => {

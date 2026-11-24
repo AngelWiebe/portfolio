@@ -1,164 +1,114 @@
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import { Typography, Stack, useMediaQuery } from "@mui/material";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import "./App.scss";
-import background from "./assets/hero-background.jpg";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ExperienceModal from "./components/ExperienceModal";
 import experienceInterface from "./types/experience";
 
-const backgroundStyle = {
-  backgroundImage: `url(${background})`,
-  backgroundSize: "cover",
-};
-
 function App() {
   const { t, i18n } = useTranslation();
-  const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const language = i18n.resolvedLanguage;
+  const [selectedExperience, setSelectedExperience] =
+    useState<experienceInterface | null>(null);
 
   useEffect(() => {
     document.documentElement.lang = language ?? "en";
   }, [language]);
-  const [selectedExperience, setSelectedExperience] =
-    useState<experienceInterface | null>(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const experienceSection = useRef<HTMLElement>(null);
 
-  useLayoutEffect(() => {
-    const section = experienceSection.current;
-    if (!section) return;
-
-    // Slick marks offscreen slides aria-hidden without disabling their controls.
-    const syncSlideInteractivity = () => {
-      section.querySelectorAll(".slick-slide[aria-hidden]").forEach((slide) => {
-        slide.toggleAttribute("inert", slide.getAttribute("aria-hidden") === "true");
-      });
-    };
-
-    syncSlideInteractivity();
-    const observer = new MutationObserver(syncSlideInteractivity);
-    observer.observe(section, {
-      attributeFilter: ["aria-hidden"],
-      childList: true,
-      subtree: true,
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const experienceList = t("cards", { returnObjects: true });
-  const experienceArray = Array.isArray(experienceList) ? experienceList : [];
-
-  const handleOpenDetails = (experience: experienceInterface) => {
-    setSelectedExperience(experience);
-    setDetailsOpen(true);
-  };
-
-  const handleDetailsClose = () => {
-    setDetailsOpen(false);
-    setSelectedExperience(null);
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: reduceMotion ? 0 : 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [
-      {
-        breakpoint: 1120,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-    accessibility: true,
-    prevArrow: <button type="button" aria-label={t("aria.previous_projects")} />,
-    nextArrow: <button type="button" aria-label={t("aria.next_projects")} />,
-  };
+  const entries = t("cards", { returnObjects: true });
+  const experiences: experienceInterface[] = Array.isArray(entries) ? entries : [];
+  const projects = experiences.filter((entry) => entry.type === "project");
+  const featured = projects.filter((project) => project.featured_image);
+  const otherProjects = projects.filter((project) => !project.featured_image);
+  const roles = experiences.filter((entry) => entry.type === "job");
+  const renderEntry = (entry: experienceInterface) => (
+    <Experience
+      key={`${entry.title}-${entry.timeline}`}
+      experience={entry}
+      onClick={() => setSelectedExperience(entry)}
+    />
+  );
 
   return (
-    <div>
-      <header className="header">
+    <>
+      <a className="skip-link" href="#main">{t("portfolio.skip")}</a>
+      <header className="site-header">
         <Header />
       </header>
 
-      <main>
-        <Stack className="main-content" style={backgroundStyle}>
-          <Typography
-            aria-live="polite"
-            className="neon-text"
-            component="h1"
-            variant="h3"
-            data-testid="description_name"
-          >
-            {t("description.name")}
-          </Typography>
-          <Typography
-            className="bio"
-            data-testid="description_bio"
-            aria-live="polite"
-          >
-            {t("description.bio")}
-          </Typography>
-        </Stack>
-        <section
-          ref={experienceSection}
-          className="experience"
-          aria-labelledby="experience-heading"
-        >
-          <h2 id="experience-heading" className="visually-hidden">
-            {t("experience")}
-          </h2>
-          <Slider
-            {...settings}
-            className="slider-wrapper"
-            data-testid="experience_slider"
-          >
-            {experienceArray.map((experience, index) => (
-              <Experience
-                key={index}
-                experience={experience}
-                onClick={() => handleOpenDetails(experience)}
-              />
-            ))}
-          </Slider>
+      <main id="main" tabIndex={-1}>
+        <section className="hero page-width" aria-labelledby="intro-heading">
+          <div className="hero-copy">
+            <p className="eyebrow hero-location">
+              <LocationOnOutlinedIcon fontSize="inherit" />
+              {t("description.address")}
+            </p>
+            <h1 id="intro-heading" data-testid="description_name">
+              {t("description.name")}
+            </h1>
+            <h2 className="hero-role">{t("portfolio.role")}</h2>
+            <p className="hero-summary" data-testid="description_bio">
+              {t("portfolio.intro")}
+            </p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#work">
+                {t("portfolio.view_work")}
+                <ArrowDownwardIcon fontSize="inherit" />
+              </a>
+              <a className="button button-quiet" href="#contact">
+                {t("portfolio.get_in_touch")}
+              </a>
+            </div>
+            <details className="hero-about">
+              <summary>{t("portfolio.about")}</summary>
+              <p>{t("description.bio")}</p>
+            </details>
+          </div>
+
+          <aside className="focus-panel" aria-labelledby="focus-heading">
+            <h2 id="focus-heading" className="eyebrow">{t("portfolio.toolkit")}</h2>
+            <dl>
+              <div><dt>{t("portfolio.frontend")}</dt><dd>React · TypeScript</dd></div>
+              <div><dt>{t("portfolio.backend")}</dt><dd>Go · Node.js · SQL</dd></div>
+              <div><dt>{t("portfolio.mobile")}</dt><dd>React Native</dd></div>
+            </dl>
+          </aside>
+        </section>
+
+        <section id="work" className="work-section page-width" aria-labelledby="work-heading">
+          <div className="section-heading">
+            <h2 id="work-heading">{t("portfolio.selected_work")}</h2>
+            <p>{t("portfolio.work_intro")}</p>
+          </div>
+          <div className="featured-grid">{featured.map(renderEntry)}</div>
+          <h3 className="more-heading">{t("portfolio.more_projects")}</h3>
+          <div className="other-projects">{otherProjects.map(renderEntry)}</div>
+        </section>
+
+        <section id="experience" className="experience-section page-width" aria-labelledby="experience-heading">
+          <div className="section-heading">
+            <h2 id="experience-heading">{t("experience")}</h2>
+            <p>{t("portfolio.experience_intro")}</p>
+          </div>
+          <div className="role-list">{roles.map(renderEntry)}</div>
         </section>
       </main>
 
       <ExperienceModal
         experience={selectedExperience}
-        detailsOpen={detailsOpen}
-        handleDetailsClose={handleDetailsClose}
+        detailsOpen={selectedExperience !== null}
+        handleDetailsClose={() => setSelectedExperience(null)}
       />
 
-      <footer className="footer">
+      <footer id="contact" className="site-footer">
         <Footer />
       </footer>
-    </div>
+    </>
   );
 }
 

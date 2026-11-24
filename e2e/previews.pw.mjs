@@ -9,17 +9,8 @@ for (const { title, asset, description } of [
   test(`plays the ${title} preview and describes the demo`, async ({ page }) => {
     await page.goto("/");
 
-    const carousel = page.getByRole("region", { name: "Experience" });
-    const next = carousel.getByRole("button", { name: "Next experience cards" });
-    const card = carousel.getByRole("button", { name: title, exact: true });
-
-    for (let group = 0; group < 3 && !(await card.count()); group++) {
-      const firstHeading = carousel.getByRole("heading", { level: 3 }).first();
-      const previousTitle = await firstHeading.textContent();
-      await next.click();
-      await expect(firstHeading).not.toHaveText(previousTitle);
-      await expect(carousel.locator(".slick-track")).toHaveCSS("transition-duration", "0s");
-    }
+    const work = page.getByRole("region", { name: "Selected work" });
+    const card = work.getByRole("button", { name: title, exact: true });
 
     await card.click();
     const previewName = "Watch the project preview video";

@@ -48,7 +48,7 @@ npm run test:smoke
 
 ## Accessibility
 
-The language switcher updates the document language and exposes the selected language to assistive technology. Keyboard users can navigate the carousel and open visible experience cards with Enter or Space. The dialogs have visible Close and Back to project buttons. These buttons and Escape restore focus to the control that opened the active dialog. The carousel and dialogs honor the system’s reduced-motion setting, and each silent preview has a text description in both languages.
+The language switcher updates the document language and exposes the selected language to assistive technology. Keyboard users can skip to the main content and open project and work-history cards with Enter or Space. The dialogs have visible Close and Back to project buttons. These buttons and Escape restore focus to the control that opened the active dialog. Anchor navigation and dialogs honor the system’s reduced-motion setting, and each silent preview has a text description in both languages.
 
 The latest local checks covered Chrome keyboard navigation, axe scans of the English desktop and French mobile views and both dialog types, and text enlarged to 200% at a 320 px viewport. Screen-reader testing, other browsers, and PDF reading order remain unverified.
 

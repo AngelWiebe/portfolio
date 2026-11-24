@@ -6,6 +6,8 @@ import googlePreview from "./assets/previews/google-preview.mp4";
 import godotPreview from "./assets/previews/godot-preview.mp4";
 import gnrPreview from "./assets/previews/gnr-preview.mp4";
 import resumePreview from "./assets/previews/resume-preview.mp4";
+import mapStill from "./assets/project-stills/map-directory.jpg";
+import resumeStill from "./assets/project-stills/virtual-resume.jpg";
 
 i18n
   // detect user language
@@ -25,6 +27,29 @@ i18n
     resources: {
       en: {
         translation: {
+          portfolio: {
+            navigation: "Main navigation",
+            skip: "Skip to main content",
+            nav_work: "Work",
+            role: "Full-stack software developer",
+            intro: "I build web and mobile applications, from accessible React interfaces to the APIs and databases behind them.",
+            view_work: "View my work",
+            get_in_touch: "Get in touch",
+            about: "More about me",
+            toolkit: "What I work with",
+            frontend: "Front end",
+            backend: "Back end",
+            mobile: "Mobile",
+            selected_work: "Selected work",
+            work_intro: "Projects in web development and games.",
+            more_projects: "More projects",
+            open_project: "View project",
+            experience_intro: "Full-stack, mobile, and technical leadership roles.",
+            contact: "Contact",
+            contact_heading: "Let’s talk.",
+            email_me: "Email me",
+            stack: "Tech stack",
+          },
           description: {
             name: "Angel Wiebe",
             address: "Okotoks, Alberta",
@@ -58,8 +83,6 @@ i18n
             language_switcher: "Language switcher",
             switch_english: "EN — English",
             switch_french: "FR — French",
-            previous_projects: "Previous experience cards",
-            next_projects: "Next experience cards",
           },
           experience: "Experience",
           video_description: "Video description:",
@@ -88,6 +111,8 @@ i18n
             {
               type: "project",
               title: "Virtual Resume",
+              featured_image: resumeStill,
+              summary: "An interactive résumé built in Godot. Explore a 3D castle to discover my work history and skills.",
               timeline: "2024",
               tech_stack: "GD Script",
               details:
@@ -100,6 +125,8 @@ i18n
             {
               type: "project",
               title: "Google Map Example",
+              featured_image: mapStill,
+              summary: "A searchable therapist directory with map pins, location filters, and results that update together.",
               timeline: "2024",
               tech_stack: "React, Typescript",
               details:
@@ -203,6 +230,29 @@ i18n
       },
       fr: {
         translation: {
+          portfolio: {
+            navigation: "Navigation principale",
+            skip: "Aller au contenu principal",
+            nav_work: "Projets",
+            role: "Développeuse full-stack",
+            intro: "Je développe des applications web et mobiles, des interfaces React accessibles aux API et aux bases de données qui les alimentent.",
+            view_work: "Voir mes projets",
+            get_in_touch: "Me contacter",
+            about: "En savoir plus sur moi",
+            toolkit: "Mes outils",
+            frontend: "Front-end",
+            backend: "Back-end",
+            mobile: "Mobile",
+            selected_work: "Projets en vedette",
+            work_intro: "Projets de développement web et de jeux.",
+            more_projects: "Autres projets",
+            open_project: "Voir le projet",
+            experience_intro: "Développement full-stack et mobile, et leadership technique.",
+            contact: "Contact",
+            contact_heading: "Parlons ensemble.",
+            email_me: "M’écrire",
+            stack: "Technologies",
+          },
           description: {
             name: "Angel Wiebe",
             address: "Okotoks, Alberta",
@@ -236,8 +286,6 @@ i18n
             language_switcher: "Sélecteur de langue",
             switch_english: "EN — Anglais",
             switch_french: "FR — Français",
-            previous_projects: "Fiches d’expérience précédentes",
-            next_projects: "Fiches d’expérience suivantes",
           },
           experience: "Expérience",
           video_description: "Description de la vidéo :",
@@ -267,6 +315,8 @@ i18n
             {
               type: "project",
               title: "CV Virtuel",
+              featured_image: resumeStill,
+              summary: "Un CV interactif réalisé avec Godot. Explorez un château en 3D pour découvrir mon parcours et mes compétences.",
               timeline: "2024",
               tech_stack: "GD Script",
               details:
@@ -279,6 +329,8 @@ i18n
             {
               type: "project",
               title: "Exemple de Google Map",
+              featured_image: mapStill,
+              summary: "Un répertoire de thérapeutes avec des repères sur la carte, des filtres géographiques et des résultats synchronisés.",
               timeline: "2024",
               tech_stack: "React, Typescript",
               details:

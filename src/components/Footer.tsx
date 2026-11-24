@@ -1,22 +1,28 @@
-import { Stack, Typography } from "@mui/material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const { t } = useTranslation();
   const skillsList = t("description.skill", { returnObjects: true });
-  const skillsArray = Array.isArray(skillsList) ? skillsList : [];
+  const skills = Array.isArray(skillsList) ? skillsList : [];
 
   return (
-    <Stack alignItems="center" flexDirection="row" spacing={2}>
-      <Typography component="span">{t("tech_stack")}</Typography>
-      <ul className="skill-list">
-        {skillsArray.map((skill, index) => (
-          <li className="skill-item" key={index}>
-            {skill}
-          </li>
-        ))}
-      </ul>
-    </Stack>
+    <div className="footer-inner page-width">
+      <div className="footer-contact">
+        <h2>{t("portfolio.contact_heading")}</h2>
+        <a className="footer-email" href="mailto:angel.wiebe.91@gmail.com">{t("portfolio.email_me")} <ArrowOutwardIcon fontSize="inherit" /></a>
+        <div className="footer-links">
+          <a href="https://github.com/AngelWiebe">GitHub <ArrowOutwardIcon fontSize="inherit" /></a>
+          <a href="https://www.linkedin.com/in/angel-wiebe-a07112113/">LinkedIn <ArrowOutwardIcon fontSize="inherit" /></a>
+        </div>
+      </div>
+      <div className="footer-skills">
+        <h2>{t("portfolio.stack")}</h2>
+        <ul>
+          {skills.map((skill) => <li key={skill}>{skill}</li>)}
+        </ul>
+      </div>
+    </div>
   );
 };
 

@@ -1,13 +1,5 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardHeader,
-  Typography,
-} from "@mui/material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useId } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
 
 import experienceInterface from "../types/experience";
@@ -20,56 +12,35 @@ interface ExperienceProps {
 const Experience = ({ experience, onClick }: ExperienceProps) => {
   const { t } = useTranslation();
   const titleId = useId();
+  const isJob = experience.type === "job";
+  const isFeatured = Boolean(experience.featured_image);
+  const Heading = !isJob && !isFeatured ? "h4" : "h3";
 
   return (
-    <Card
-      role="article"
+    <article
       aria-labelledby={titleId}
-      className={experience.type === "job" ? "blue" : "pink"}
+      className={isJob ? "role" : isFeatured ? "project project-featured" : "project project-compact"}
     >
-      <CardHeader
-        title={
-          <Typography
-            component="h3"
-            variant="h6"
-            className="title"
-            id={titleId}
-          >
-            {experience.title}
-          </Typography>
-        }
-        action={<ExpandMoreIcon />}
-      />
-      <CardContent>
-        {experience.company && (
-          <Typography data-testid="company">
-            <Box component="span" fontWeight="bold">
-              {t("company")}
-            </Box>
-            {experience.company}
-          </Typography>
-        )}
-
-        <Typography data-testid="timeline">
-          <Box component="span" fontWeight="bold">
-            {t("timeline")}
-          </Box>
-          {experience.timeline}
-        </Typography>
-
-        <Typography>{experience.details.substring(0, 50)}...</Typography>
-
+      {experience.featured_image && (
+        <img className="project-image" src={experience.featured_image} alt="" width="960" height="560" />
+      )}
+      <div className="entry-content">
+        <p className="entry-date" data-testid="timeline">{experience.timeline}</p>
+        <Heading id={titleId}>{experience.title}</Heading>
+        {experience.company && <p className="entry-company" data-testid="company">{experience.company}</p>}
+        <p className="entry-summary">{experience.summary ?? experience.details.split(". ")[0].replace(/\.?$/, ".")}</p>
         {experience.tech_stack && (
-          <Typography data-testid="tech_stack">
-            <Box component="span" fontWeight="bold">
-              {t("tech_stack")}
-            </Box>
-            {experience.tech_stack}
-          </Typography>
+          <p className="entry-stack" data-testid="tech_stack">
+            {experience.tech_stack.split(", ").slice(0, isJob ? 4 : 3).join(" · ")}
+          </p>
         )}
-      </CardContent>
-      <CardActionArea aria-labelledby={titleId} onClick={onClick} />
-    </Card>
+        <span className="entry-action" aria-hidden="true">
+          {isFeatured && t("portfolio.open_project")}
+          <ArrowOutwardIcon fontSize="inherit" />
+        </span>
+      </div>
+      <button className="entry-button" type="button" aria-labelledby={titleId} onClick={onClick} />
+    </article>
   );
 };
 

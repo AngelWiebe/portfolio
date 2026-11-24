@@ -6,9 +6,8 @@ test("returns from a preview and closes the project using French touch controls"
   await page.goto("/");
   await page.getByRole("button", { name: /^FR / }).tap();
 
-  const carousel = page.getByRole("region", { name: "Expérience" });
-  await carousel.getByRole("button", { name: "Fiches d’expérience suivantes" }).tap();
-  const card = carousel.getByRole("button", { name: "CV Virtuel", exact: true });
+  const work = page.getByRole("region", { name: "Projets en vedette" });
+  const card = work.getByRole("button", { name: "CV Virtuel", exact: true });
   await card.tap();
 
   const details = page.getByRole("dialog", { name: "CV Virtuel" });
