@@ -11,6 +11,18 @@ export default interface experienceInterface {
   preview_description?: string;
   featured_image?: string;
   summary?: string;
+  resume?: {
+    title?: string;
+    company?: string;
+    location?: string;
+    timeline?: string;
+    technicalEnvironment?: string;
+    sections: {
+      heading?: string;
+      intro?: string;
+      bullets: string[];
+    }[];
+  };
   git_link: string;
   site: string | null;
 }

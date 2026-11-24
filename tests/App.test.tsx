@@ -62,6 +62,20 @@ describe("App Component", () => {
     expect(dialog.getByRole("link", { name: "Visit the project website" })).toHaveAttribute("href", url);
   });
 
+  test("shows résumé client sections and complete bullets in the expanded work view", async () => {
+    const user = userEvent.setup();
+    const workHistory = within(screen.getByRole("region", { name: "Experience" }));
+    const contractor = within(workHistory.getByText("Contractor", { exact: true }).closest("article")!);
+    await user.click(contractor.getByRole("button"));
+    const dialog = within(screen.getByRole("dialog", { name: "Full-Stack Developer (Independent Contractor)" }));
+
+    expect(dialog.getByText("2734539 Alberta Ltd.")).toBeInTheDocument();
+    expect(dialog.getByRole("heading", { name: /^Client: Topstep/ })).toBeInTheDocument();
+    expect(dialog.getByRole("heading", { name: /^Client: Intuit \/ Mailchimp/ })).toBeInTheDocument();
+    expect(dialog.getAllByRole("listitem")).toHaveLength(5);
+    expect(dialog.getByText(/Technical Environment:/)).toBeInTheDocument();
+  });
+
   test("opens the selected project's details and restores focus when dismissed", async () => {
     const user = userEvent.setup();
     const card = screen.getByRole("button", { name: "Virtual Resume" });

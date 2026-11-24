@@ -82,6 +82,7 @@ i18n
           work_type: "Work Type: ",
           company: "Company: ",
           location: "Location: ",
+          technical_environment: "Technical Environment: ",
           tech_stack: "Tech Stack: ",
           unsupported: "Your browser does not support the video tag.",
           cards: [
@@ -115,6 +116,31 @@ i18n
             {
               type: "job",
               company: "Contractor",
+              resume: {
+                title: "Full-Stack Developer (Independent Contractor)",
+                company: "2734539 Alberta Ltd.",
+                location: "Remote, Alberta",
+                timeline: "April 2024 – Present",
+                technicalEnvironment: "React Native, Expo, React, TypeScript, Node.js, Express, GraphQL, SignalR, REST APIs, React Query, PHP, Docker, Git, Cursor",
+                sections: [
+                  {
+                    heading: "Client: Topstep | Full-Stack / React Native Developer | Remote",
+                    bullets: [
+                      "Improved real-time chart responsiveness by separating streaming market data from server state, managing timeframe changes and overlays, and limiting unnecessary React Native updates.",
+                      "Developed an event-driven alerting service for price thresholds, trade executions and position changes, including end-to-end price alert creation.",
+                      "Built and integrated Node.js/TypeScript backend endpoints and mobile workflows using GraphQL and SignalR for trading data and application functionality."
+                    ],
+                    intro: "Developed mobile trading features for an upcoming React Native (Expo) application and Node.js/TypeScript backend."
+                  },
+                  {
+                    heading: "Client: Intuit / Mailchimp | Full-Stack Developer | Remote",
+                    bullets: [
+                      "Integrated a Zendesk support widget into the Mailchimp Shopify homepage and plan-selection experience using React, TypeScript and PHP, accounting for feature flags and multiple initialization contexts.",
+                      "Used Cursor for codebase analysis, scaffolding, refactoring, debugging, testing and security reviews while retaining ownership of implementation decisions."
+                    ]
+                  }
+                ]
+              },
               title: "Full Stack Developer",
               location: "Okotoks, Alberta",
               timeline: "April 2024 - Present",
@@ -155,6 +181,22 @@ i18n
             {
               type: "job",
               company: "Emids Technologies ",
+              resume: {
+                title: "Senior Developer",
+                company: "Emids Technologies",
+                location: "Gatineau, Quebec",
+                timeline: "April 2022 – March 2024",
+                technicalEnvironment: "React, TypeScript, Node.js, MongoDB, SCSS, Git, Azure DevOps, Docker",
+                sections: [
+                  {
+                    bullets: [
+                      "Led client-facing project meetings, coordinated delivery and mentored junior developers.",
+                      "Developed healthcare-focused software using React, TypeScript, Node.js and MongoDB.",
+                      "Collaborated using Azure DevOps, Git, Docker and team development workflows."
+                    ]
+                  }
+                ]
+              },
               title: "Senior Software Developer",
               location: "Gatineau, Quebec",
               timeline: "April 2022 - March 2024",
@@ -180,6 +222,20 @@ i18n
             {
               type: "job",
               company: "Tactica Interactive",
+              resume: {
+                title: "Full-Stack Developer",
+                company: "Tactica Interactive",
+                location: "Winnipeg, Manitoba",
+                timeline: "October 2020 – March 2022",
+                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode",
+                sections: [
+                  {
+                    bullets: [
+                      "Built accessible React Native applications for iOS and Android and supported app-store deployment."
+                    ]
+                  }
+                ]
+              },
               title: "Full Stack Developer",
               location: "Winnipeg, Manitoba",
               timeline: "October 2020 - March 2022",
@@ -192,6 +248,7 @@ i18n
             {
               type: "project",
               title: "Internal Billing System",
+              resume: { sections: [{ bullets: ["Built an internal invoicing application that replaced manual billing work and saved managers several hours each per month."] }] },
               timeline: "2018",
               tech_stack: "React, Laravel",
               details:
@@ -213,6 +270,24 @@ i18n
             {
               type: "job",
               company: "Bold Commerce",
+              resume: {
+                title: "Full-Stack Developer",
+                company: "Bold Commerce",
+                location: "Winnipeg, Manitoba",
+                timeline: "February 2016 – October 2020",
+                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Git, Docker",
+                sections: [
+                  {
+                    bullets: [
+                      "Developed full-stack e-commerce features and integrations using React, PHP, Laravel, JavaScript and SQL.",
+                      "Integrated Staples with a third-party fulfillment provider, supporting the flow of order and fulfillment information between systems.",
+                      "Implemented CSS customizations for Staples' Shopify checkout experience, working within a checkout implementation owned by a separate payments team.",
+                      "Built an internal invoicing application that replaced manual billing work and saved managers several hours each per month.",
+                      "Collaborated directly with clients on selected projects and contributed to application and database development."
+                    ]
+                  }
+                ]
+              },
               title: "Full Stack Developer",
               location: "Winnipeg, Manitoba",
               timeline: "February 2016 - October 2020",
@@ -234,6 +309,19 @@ i18n
             {
               type: "job",
               company: "Varian Medical Systems",
+              resume: {
+                title: "Software Testing Intern",
+                company: "Varian Medical Systems",
+                location: "Winnipeg, Manitoba",
+                timeline: "January 2016 – February 2016",
+                sections: [
+                  {
+                    bullets: [
+                      "Trained in software testing in a medical technology environment."
+                    ]
+                  }
+                ]
+              },
               title: "Intern",
               location: "Winnipeg, Manitoba",
               timeline: "January 2016 - February 2016",
@@ -295,6 +383,7 @@ i18n
           work_type: "Type de travail: ",
           company: "Entreprise: ",
           location: "Location: ",
+          technical_environment: "Environnement technique : ",
           tech_stack: "Pile Technologique: ",
           unsupported:
             "Votre navigateur ne prend pas en charge la balise vidéo.",
@@ -329,6 +418,31 @@ i18n
             {
               type: "job",
               company: "Contractuel",
+              resume: {
+                title: "Développeuse full stack (travailleuse autonome)",
+                company: "2734539 Alberta Ltd.",
+                location: "Télétravail, Alberta",
+                timeline: "Avril 2024 – aujourd’hui",
+                technicalEnvironment: "React Native, Expo, React, TypeScript, Node.js, Express, GraphQL, SignalR, REST APIs, React Query, PHP, Docker, Git, Cursor",
+                sections: [
+                  {
+                    heading: "Client : Topstep | Développeuse full stack / React Native | Télétravail",
+                    bullets: [
+                      "Amélioration de la réactivité des graphiques en temps réel en séparant les flux de données de marché de l’état du serveur, en gérant les changements de périodes et les superpositions, et en limitant les mises à jour React Native inutiles.",
+                      "Développement d’un service d’alertes événementielles pour les seuils de prix, les exécutions d’ordres et les changements de positions, y compris la création complète d’alertes de prix.",
+                      "Création et intégration de points de terminaison back-end Node.js/TypeScript et de parcours mobiles utilisant GraphQL et SignalR pour les données de négociation et les fonctionnalités de l’application."
+                    ],
+                    intro: "Développement de fonctionnalités de négociation mobile pour une application React Native (Expo) à venir et son système back-end Node.js/TypeScript."
+                  },
+                  {
+                    heading: "Client : Intuit / Mailchimp | Développeuse full stack | Télétravail",
+                    bullets: [
+                      "Intégration d’un module d’assistance Zendesk à la page d’accueil Shopify de Mailchimp et au parcours de sélection des forfaits avec React, TypeScript et PHP, en tenant compte des indicateurs de fonctionnalités et des différents contextes d’initialisation.",
+                      "Utilisation de Cursor pour l’analyse du code, la génération de structures, la refactorisation, le débogage, les tests et les vérifications de sécurité, tout en conservant la responsabilité des décisions techniques."
+                    ]
+                  }
+                ]
+              },
               title: "Développeur Full Stack",
               location: "Okotoks, Alberta",
               timeline: "Avril 2024 - Présent",
@@ -369,6 +483,22 @@ i18n
             {
               type: "job",
               company: "Emids Technologies",
+              resume: {
+                title: "Développeuse senior",
+                company: "Emids Technologies",
+                location: "Gatineau, Québec",
+                timeline: "Avril 2022 – mars 2024",
+                technicalEnvironment: "React, TypeScript, Node.js, MongoDB, SCSS, Git, Azure DevOps, Docker",
+                sections: [
+                  {
+                    bullets: [
+                      "Animation de réunions de projet avec les clients, coordination des livraisons et mentorat de développeurs juniors.",
+                      "Développement de logiciels dans le domaine de la santé avec React, TypeScript, Node.js et MongoDB.",
+                      "Collaboration au moyen d’Azure DevOps, Git, Docker et de processus de développement en équipe."
+                    ]
+                  }
+                ]
+              },
               title: "Développeur Senior en Logiciel",
               location: "Gatineau, Québec",
               timeline: "Avril 2022 - Mars 2024",
@@ -393,6 +523,20 @@ i18n
             {
               type: "job",
               company: "Tactica Interactive",
+              resume: {
+                title: "Développeuse full stack",
+                company: "Tactica Interactive",
+                location: "Winnipeg, Manitoba",
+                timeline: "Octobre 2020 – mars 2022",
+                technicalEnvironment: "React Native, Ruby, SCSS, Git, Android Studio, Xcode",
+                sections: [
+                  {
+                    bullets: [
+                      "Création d’applications React Native accessibles pour iOS et Android et participation à leur déploiement dans les boutiques d’applications."
+                    ]
+                  }
+                ]
+              },
               title: "Développeur Full Stack",
               location: "Winnipeg, Manitoba",
               timeline: "Octobre 2020 - Mars 2022",
@@ -405,6 +549,7 @@ i18n
             {
               type: "project",
               title: "Système de facturation",
+              resume: { sections: [{ bullets: ["Création d’une application interne de facturation remplaçant un processus manuel et permettant à chaque gestionnaire d’économiser plusieurs heures par mois."] }] },
               timeline: "2018",
               tech_stack: "React, Laravel",
               details:
@@ -426,6 +571,24 @@ i18n
             {
               type: "job",
               company: "Bold Commerce",
+              resume: {
+                title: "Développeuse full stack",
+                company: "Bold Commerce",
+                location: "Winnipeg, Manitoba",
+                timeline: "Février 2016 – octobre 2020",
+                technicalEnvironment: "React, Angular, PHP, Laravel, JavaScript, SQL, Liquid, Git, Docker",
+                sections: [
+                  {
+                    bullets: [
+                      "Développement de fonctionnalités et d’intégrations de commerce électronique full stack avec React, PHP, Laravel, JavaScript et SQL.",
+                      "Intégration de Staples à un fournisseur externe de traitement des commandes, assurant l’échange des données de commandes et d’expédition entre les systèmes.",
+                      "Personnalisation CSS du parcours de paiement Shopify de Staples, en collaboration avec une équipe distincte responsable de l’implémentation des paiements.",
+                      "Création d’une application interne de facturation remplaçant un processus manuel et permettant à chaque gestionnaire d’économiser plusieurs heures par mois.",
+                      "Collaboration directe avec les clients sur certains projets et contribution au développement d’applications et de bases de données."
+                    ]
+                  }
+                ]
+              },
               title: "Développeur Full Stack",
               location: "Winnipeg, Manitoba",
               timeline: "Février 2016 - Octobre 2020",
@@ -447,6 +610,19 @@ i18n
             {
               type: "job",
               company: "Varian Medical Systems",
+              resume: {
+                title: "Stagiaire en tests logiciels",
+                company: "Varian Medical Systems",
+                location: "Winnipeg, Manitoba",
+                timeline: "Janvier 2016 – février 2016",
+                sections: [
+                  {
+                    bullets: [
+                      "Formation en tests logiciels dans un environnement de technologies médicales."
+                    ]
+                  }
+                ]
+              },
               title: "Stagiaire",
               location: "Winnipeg, Manitoba",
               timeline: "Janvier 2016 - Février 2016",

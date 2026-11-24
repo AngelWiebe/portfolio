@@ -401,6 +401,12 @@ main {
   .MuiDialogContent-root { background: $paper; overflow-wrap: anywhere; }
   .MuiTypography-root { color: inherit; margin-bottom: .65rem; }
   h2.MuiTypography-root { font-size: clamp(1.35rem, 4vw, 1.9rem); font-weight: 800; letter-spacing: -.04em; }
+  .resume-extract {
+    h3 { font-weight: 800; margin-top: 1rem; }
+    ul { margin: 0 0 .85rem; padding-inline-start: 1.3em; }
+    li + li { margin-top: .35rem; }
+  }
+
   .MuiIconButton-root, .MuiButton-root { color: $accent; min-width: 44px; min-height: 44px; }
   .MuiDialogActions-root { padding: .4rem 1rem; border-top: 1px solid $line; }
   :is(.MuiButton-root, .MuiIconButton-root).Mui-focusVisible { outline: 3px solid $accent; outline-offset: -3px; }

@@ -85,3 +85,22 @@ test("keeps French content within a narrow viewport with doubled text", async ({
     })),
   ).toBe(true);
 });
+
+test("shows the original French résumé extract in the mobile work dialog", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByRole("button", { name: /^FR / }).click();
+
+  const contractor = page
+    .getByRole("region", { name: "Expérience" })
+    .getByRole("article")
+    .filter({ hasText: "Contractuel" });
+  await contractor.getByRole("button").click();
+
+  const dialog = page.getByRole("dialog", { name: "Développeuse full stack (travailleuse autonome)" });
+  await expect(dialog.getByRole("heading", { name: /^Client : Topstep/ })).toBeVisible();
+  await expect(dialog.getByRole("listitem")).toHaveCount(5);
+  await expect(dialog.getByText(/Environnement technique/)).toBeVisible();
+  await dialog.getByRole("button", { name: "Fermer" }).click();
+  await expect(contractor.getByRole("button")).toBeFocused();
+});

@@ -35,6 +35,10 @@ const ExperienceModal = ({
 
   if (!experience) return null;
 
+  const { resume } = experience;
+  const company = resume?.company ?? experience.company;
+  const location = resume?.location ?? experience.location;
+
   const handleVideoOpen = () => {
     setVideoOpen(true);
   };
@@ -56,32 +60,32 @@ const ExperienceModal = ({
       >
         <DialogContent className="modal">
           <Typography component="h2" variant="h6" id={detailsTitleId}>
-            {experience.title}
+            {resume?.title ?? experience.title}
           </Typography>
-          {experience.company && (
+          {company && (
             <Typography variant="body1">
               <Box component="span" fontWeight="bold">
                 {t("company")}
               </Box>
-              {experience.company}
+              {company}
             </Typography>
           )}
-          {experience.location && (
+          {location && (
             <Typography>
               <Box component="span" fontWeight="bold">
                 {t("location")}
               </Box>
-              {experience.location}
+              {location}
             </Typography>
           )}
           <Typography>
             <Box component="span" fontWeight="bold">
               {t("timeline")}
             </Box>
-            {experience.timeline}
+            {resume?.timeline ?? experience.timeline}
           </Typography>
 
-          {experience.work_type && (
+          {!resume && experience.work_type && (
             <Typography>
               <Box component="span" fontWeight="bold">
                 {t("work_type")}
@@ -90,14 +94,28 @@ const ExperienceModal = ({
             </Typography>
           )}
 
-          <Typography variant="body1">{experience.details}</Typography>
+          {resume ? (
+            <div className="resume-extract">
+              {resume.sections.map(({ heading, intro, bullets }) => (
+                <div key={heading ?? bullets[0]}>
+                  {heading && <Typography component="h3" variant="subtitle1">{heading}</Typography>}
+                  {intro && <Typography>{intro}</Typography>}
+                  <ul>
+                    {bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <Typography variant="body1">{experience.details}</Typography>
+          )}
 
-          {experience.tech_stack && (
+          {(resume ? resume.technicalEnvironment : experience.tech_stack) && (
             <Typography>
               <Box component="span" fontWeight="bold">
-                {t("tech_stack")}
+                {t(resume ? "technical_environment" : "tech_stack")}
               </Box>
-              {experience.tech_stack}
+              {resume ? resume.technicalEnvironment : experience.tech_stack}
             </Typography>
           )}
 
