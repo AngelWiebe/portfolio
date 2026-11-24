@@ -6,7 +6,7 @@ import { Typography, Stack, useMediaQuery } from "@mui/material";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import "./App.scss";
-import background from "./assets/background.jpg";
+import background from "./assets/hero-background.jpg";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
