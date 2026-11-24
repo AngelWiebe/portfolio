@@ -10,6 +10,26 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("./assets/lily-backdrop.jpg") center / cover no-repeat;
+  opacity: .56;
+  pointer-events: none;
+}
+
+#root { position: relative; }
+
+@media (max-width: 42rem) {
+  body::before { background-position: right center; opacity: .32; }
+}
+
+@media (forced-colors: active) {
+  body::before { display: none; }
+}
+
 a { color: inherit; }
 button { font: inherit; }
 button:not(:disabled) { cursor: pointer; }

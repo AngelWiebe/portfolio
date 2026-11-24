@@ -28,3 +28,26 @@ test("keeps navigation and project dialogs usable with reduced motion", async ({
   await page.keyboard.press("Escape");
   await expect(card).toBeFocused();
 });
+
+test("keeps the floral backdrop fixed while the content scrolls", async ({ page, request }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const hero = page.getByRole("heading", { level: 1, name: "Angel Wiebe" });
+  const readLayer = () => page.locator("body").evaluate((body) => {
+    const layer = getComputedStyle(body, "::before");
+    return { position: layer.position, inset: layer.inset, image: layer.backgroundImage };
+  });
+
+  const background = await readLayer();
+  expect(background.position).toBe("fixed");
+  expect(background.inset).toBe("0px");
+  const url = background.image.match(/url\("?([^"]+?)"?\)/)?.[1];
+  expect(url).toBeTruthy();
+  expect((await request.get(url)).ok()).toBe(true);
+
+  await page.getByRole("link", { name: "View my work" }).click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+  await expect(hero).not.toBeInViewport();
+  expect(await readLayer()).toEqual(background);
+});
