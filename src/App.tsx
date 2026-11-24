@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ExperienceModal from "./components/ExperienceModal";
 import experienceInterface from "./types/experience";
+import { toolkit } from "./toolkit";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -73,9 +74,12 @@ function App() {
           <aside className="focus-panel" aria-labelledby="focus-heading">
             <h2 id="focus-heading" className="eyebrow">{t("portfolio.toolkit")}</h2>
             <dl>
-              <div><dt>{t("portfolio.frontend")}</dt><dd>React · TypeScript</dd></div>
-              <div><dt>{t("portfolio.backend")}</dt><dd>Go · Node.js · SQL</dd></div>
-              <div><dt>{t("portfolio.mobile")}</dt><dd>React Native</dd></div>
+              {Object.entries(toolkit).map(([category, technologies]) => (
+                <div key={category}>
+                  <dt>{t(`portfolio.${category}`)}</dt>
+                  <dd>{technologies.join(" · ")}</dd>
+                </div>
+              ))}
             </dl>
           </aside>
         </section>

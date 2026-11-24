@@ -234,7 +234,7 @@ main {
   dt { color: #e9d8f5; font-size: .8rem; font-weight: 700; }
   dd {
     margin: .1rem 0 0;
-    font-size: clamp(1rem, 1.8vw, 1.42rem);
+    font-size: clamp(.95rem, 1.45vw, 1.15rem);
     font-weight: 800;
     letter-spacing: -.03em;
     overflow-wrap: anywhere;
@@ -419,7 +419,7 @@ main {
   .hero { padding-block: 2.7rem 2.75rem; }
   .focus-panel dl {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.25rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
     gap: .55rem;
     margin-top: .7rem;
   }

@@ -25,6 +25,21 @@ describe("App Component", () => {
     expect(footerElement).toBeInTheDocument();
   });
 
+  test("shows a varied toolkit whose technologies all appear in the full stack", () => {
+    const toolkit = within(screen.getByRole("complementary", { name: "What I work with" }));
+    const footer = within(screen.getByRole("contentinfo"));
+    const groups = toolkit.getAllByRole("definition");
+
+    expect(groups).toHaveLength(4);
+    expect(toolkit.getByText("Testing and delivery")).toBeInTheDocument();
+    expect(toolkit.getByText(/React Native · iOS · Android/)).toBeInTheDocument();
+    for (const group of groups) {
+      for (const name of (group.textContent ?? "").split(" · ")) {
+        expect(footer.getByText(name, { exact: true })).toBeInTheDocument();
+      }
+    }
+  });
+
   test("shows projects and work history as separate, complete collections", () => {
     const projects = screen.getByRole("region", { name: "Selected work" });
     const experience = screen.getByRole("region", { name: "Experience" });

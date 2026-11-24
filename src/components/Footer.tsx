@@ -1,10 +1,9 @@
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useTranslation } from "react-i18next";
+import { techStack } from "../toolkit";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const skillsList = t("description.skill", { returnObjects: true });
-  const skills = Array.isArray(skillsList) ? skillsList : [];
 
   return (
     <div className="footer-inner page-width">
@@ -19,7 +18,7 @@ const Footer = () => {
       <div className="footer-skills">
         <h2>{t("portfolio.stack")}</h2>
         <ul>
-          {skills.map((skill) => <li key={skill}>{skill}</li>)}
+          {techStack.map((skill) => <li key={skill}>{skill}</li>)}
         </ul>
       </div>
     </div>
