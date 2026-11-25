@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import enPdf from "../assets/Resume2026.pdf";
 import frPdf from "../assets/ResumeFR2026.pdf";
 
+const minimumContentHeight = 120;
+
 const Header = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage;
@@ -16,7 +18,10 @@ const Header = () => {
 
     const root = document.documentElement;
     const updateScrollOffset = () => {
-      root.style.setProperty("--site-header-height", `${element.getBoundingClientRect().height}px`);
+      const height = element.getBoundingClientRect().height;
+      const canStick = window.innerHeight - height >= minimumContentHeight;
+      element.toggleAttribute("data-scroll-with-page", !canStick);
+      root.style.setProperty("--site-header-height", canStick ? `${height}px` : "0px");
     };
 
     updateScrollOffset();
@@ -24,9 +29,11 @@ const Header = () => {
       ? undefined
       : new ResizeObserver(updateScrollOffset);
     observer?.observe(element);
+    window.addEventListener("resize", updateScrollOffset);
 
     return () => {
       observer?.disconnect();
+      window.removeEventListener("resize", updateScrollOffset);
       root.style.removeProperty("--site-header-height");
     };
   }, []);
@@ -48,15 +55,15 @@ const Header = () => {
         <div className="header-actions">
           <div className="language-switcher" role="group" aria-label={t("aria.language_switcher")}>
             {(["en", "fr"] as const).map((code) => (
-              <button
+              <a
                 key={code}
-                type="button"
+                href={code === "en" ? "/" : "/fr/"}
+                hrefLang={code}
                 aria-label={t(code === "en" ? "aria.switch_english" : "aria.switch_french")}
-                aria-pressed={language === code}
-                onClick={() => void i18n.changeLanguage(code)}
+                aria-current={language === code ? "page" : undefined}
               >
                 {code.toUpperCase()}
-              </button>
+              </a>
             ))}
           </div>
           <a className="button button-outline resume-link" href={language === "fr" ? frPdf : enPdf} download="resume.pdf">

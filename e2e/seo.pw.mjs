@@ -63,3 +63,58 @@ test("serves the favicon, sitemap, crawler directives, and social image", async 
   expect(sitemap.ok()).toBe(true);
   expect(await sitemap.text()).toContain(`<loc>${canonical}</loc>`);
 });
+
+test("serves reciprocal language alternates and a crawlable French page", async ({ page, request }) => {
+  for (const [language, path] of [["en", "/"], ["fr", "/fr/"]]) {
+    await page.goto(path);
+    await expect(page.locator("html")).toHaveAttribute("lang", language);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new URL(path, canonical).href);
+
+    for (const [alternate, alternatePath] of [["en", "/"], ["fr", "/fr/"], ["x-default", "/"]]) {
+      await expect(page.locator(`head link[rel="alternate"][hreflang="${alternate}"]`))
+        .toHaveAttribute("href", new URL(alternatePath, canonical).href);
+    }
+  }
+
+  await expect(page).toHaveTitle("Angel Wiebe | Portfolio de développeuse full stack");
+  await expect(page.getByRole("heading", { name: "Expérience", exact: true })).toBeVisible();
+  await page.getByRole("link", { name: "English" }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await page.getByRole("link", { name: "Français" }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+
+  const sitemap = await request.get("/sitemap.xml");
+  expect(await sitemap.text()).toContain(`<loc>${canonical}fr/</loc>`);
+});
+
+test("keeps localized search and social metadata consistent with each page", async ({ page }) => {
+  const languages = [
+    { path: "/", language: "en", locale: "en_CA", alternate: "fr_CA", description: /Okotoks, Alberta/ },
+    { path: "/fr/", language: "fr", locale: "fr_CA", alternate: "en_CA", description: /Okotoks, en Alberta/ },
+  ];
+
+  const descriptions = [];
+  for (const { path, language, locale, alternate, description } of languages) {
+    const response = await page.goto(path);
+    expect(response.status()).toBe(200);
+
+    const url = new URL(path, canonical).href;
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", url);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", await page.title());
+    await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", locale);
+    await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveAttribute("content", alternate);
+
+    const searchDescription = page.locator('meta[name="description"]');
+    await expect(searchDescription).toHaveAttribute("content", description);
+    descriptions.push(await searchDescription.getAttribute("content"));
+
+    const profile = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+    expect(profile).toMatchObject({
+      "@type": "ProfilePage",
+      url,
+      inLanguage: language,
+      mainEntity: { "@id": `${canonical}#angel-wiebe`, url: canonical },
+    });
+  }
+  expect(descriptions[0]).not.toBe(descriptions[1]);
+});

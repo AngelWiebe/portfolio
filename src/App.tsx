@@ -1,6 +1,6 @@
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import "./App.scss";
@@ -13,14 +13,9 @@ import type ExperienceEntry from "./types/experience";
 import { toolkit } from "./toolkit";
 
 function App() {
-  const { t, i18n } = useTranslation();
-  const language = i18n.resolvedLanguage;
+  const { t } = useTranslation();
   const [selectedExperience, setSelectedExperience] =
     useState<ExperienceEntry | null>(null);
-
-  useEffect(() => {
-    document.documentElement.lang = language ?? "en";
-  }, [language]);
 
   const entries = t("cards", { returnObjects: true });
   const experiences: ExperienceEntry[] = Array.isArray(entries) ? entries : [];

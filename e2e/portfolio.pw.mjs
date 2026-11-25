@@ -17,7 +17,7 @@ test("downloads the built résumé for each language", async ({ page }) => {
     },
   ]) {
     if (language === "fr") {
-      await page.getByRole("button", { name: /^FR / }).click();
+      await page.getByRole("link", { name: /^FR / }).click();
     }
 
     await expect(page.locator("html")).toHaveAttribute("lang", language);
@@ -66,7 +66,7 @@ test("restores keyboard focus from the preview to the details and card", async (
 test("keeps French content within a narrow viewport with doubled text", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto("/");
-  await page.getByRole("button", { name: /^FR / }).click();
+  await page.getByRole("link", { name: /^FR / }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "fr");
   await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
   await page.evaluate(() => document.fonts.ready);
@@ -97,7 +97,7 @@ test("keeps French content within a narrow viewport with doubled text", async ({
 test("shows the original French résumé extract in the mobile work dialog", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
   await page.goto("/");
-  await page.getByRole("button", { name: /^FR / }).click();
+  await page.getByRole("link", { name: /^FR / }).click();
   await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
 
   const contractor = page

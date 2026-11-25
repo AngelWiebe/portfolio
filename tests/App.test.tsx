@@ -144,11 +144,8 @@ describe("App Component", () => {
     expect(bioElement).toBeInTheDocument();
   });
 
-  test("updates the document language when the language changes", async () => {
-    const user = userEvent.setup();
-    await user.click(screen.getByRole("button", { name: /^FR / }));
-    expect(document.documentElement).toHaveAttribute("lang", "fr");
-    await user.click(screen.getByRole("button", { name: /^EN / }));
-    expect(document.documentElement).toHaveAttribute("lang", "en");
+  test("links to the indexable language pages", () => {
+    expect(screen.getByRole("link", { name: /^EN / })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: /^FR / })).toHaveAttribute("href", "/fr/");
   });
 });

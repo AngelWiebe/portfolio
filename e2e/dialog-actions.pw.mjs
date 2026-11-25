@@ -4,7 +4,7 @@ test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
 
 test("returns from a preview and closes the project using French touch controls", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: /^FR / }).tap();
+  await page.getByRole("link", { name: /^FR / }).tap();
 
   const work = page.getByRole("region", { name: "Projets en vedette" });
   const card = work.getByRole("button", { name: "CV Virtuel", exact: true });

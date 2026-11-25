@@ -9,9 +9,14 @@
       content="Angel Wiebe is a software developer in Okotoks, Alberta. Explore web and game projects, full-stack experience, and résumés in English and French."
     />
     <link rel="canonical" href="https://angelwiebe.ca/" />
+    <link rel="alternate" hreflang="en" href="https://angelwiebe.ca/" />
+    <link rel="alternate" hreflang="fr" href="https://angelwiebe.ca/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://angelwiebe.ca/" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
 
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:locale:alternate" content="fr_CA" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://angelwiebe.ca/" />
     <meta property="og:title" content="Angel Wiebe | Software Developer Portfolio" />
@@ -30,25 +35,15 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
-    <style>
-      .portfolio-overview {
-        max-width: 45rem;
-        margin-inline: auto;
-        padding: 1.5rem;
-        font: 1rem / 1.6 system-ui, sans-serif;
-      }
-
-      .portfolio-overview a {
-        color: inherit;
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="/src/index.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "ProfilePage",
         "url": "https://angelwiebe.ca/",
+        "inLanguage": "en",
         "mainEntity": {
+          "@id": "https://angelwiebe.ca/#angel-wiebe",
           "@type": "Person",
           "name": "Angel Wiebe",
           "jobTitle": "Software Developer",
@@ -64,11 +59,14 @@
   <body>
     <div id="root">
       <main class="portfolio-overview">
+        <nav aria-label="Language">
+          <a href="/" lang="en" hreflang="en" aria-current="page">English</a>
+          · <a href="/fr/" lang="fr" hreflang="fr">Français</a>
+        </nav>
         <h1>Angel Wiebe</h1>
         <p>
-          I’m a software developer in Okotoks, Alberta, with experience building
-          front-end and full-stack applications using React, TypeScript, and
-          other web technologies.
+          I’m a full-stack software developer in Okotoks, Alberta. I build accessible
+          web and mobile applications with React, TypeScript, React Native, and Node.js.
         </p>
         <h2>Selected projects</h2>
         <ul>
@@ -96,7 +94,14 @@
             <a href="https://github.com/AngelWiebe/godot-tutorial">Godot Tutorial</a>
             demonstrates a 2D game where the player dodges enemies.
           </li>
+          <li>
+            <a href="https://dlrconsulting.ca/">DLR Consulting Ltd.</a>
+            is a bilingual site for a negotiation and representation practice.
+          </li>
         </ul>
+        <h2>Experience</h2>
+        <p>My work includes independent full-stack contracting, healthcare software at Emids Technologies,
+          mobile development at Tactica Interactive, and Shopify integrations at Bold Commerce.</p>
         <p>
           <a href="https://github.com/AngelWiebe">GitHub</a>
           · <a href="https://www.linkedin.com/in/angel-wiebe-a07112113/">LinkedIn</a>

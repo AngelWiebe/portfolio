@@ -1,5 +1,4 @@
 import i18n from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
 import googlePreview from "./assets/previews/google-preview.mp4";
@@ -26,9 +25,9 @@ const projectLinks = {
 };
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: document.documentElement.lang === "fr" ? "fr" : "en",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,

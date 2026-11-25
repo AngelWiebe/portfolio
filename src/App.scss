@@ -45,6 +45,8 @@ main {
   border-bottom: 1px solid $line;
   background: $paper;
   box-shadow: 0 3px 12px rgba($ink, .07);
+
+  &[data-scroll-with-page] { position: static; }
 }
 
 .header-inner {
@@ -104,7 +106,9 @@ main {
   border-radius: .55rem;
   padding: .14rem;
 
-  button {
+  a {
+    display: grid;
+    place-items: center;
     min-width: 2.1rem;
     min-height: 2.2rem;
     padding: .2rem .35rem;
@@ -115,7 +119,7 @@ main {
     font-size: .75rem;
     font-weight: 800;
 
-    &[aria-pressed="true"] { background: $lavender; color: $accent; }
+    &[aria-current="page"] { background: $lavender; color: $accent; }
   }
 }
 
