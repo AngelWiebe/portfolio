@@ -68,3 +68,17 @@ test("keeps the header pinned and anchors visible when the French header wraps",
     .toBeGreaterThanOrEqual((await header.boundingBox()).height);
   await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().top)).toBe(0);
 });
+
+test("aligns the Experience heading and first timeline row on desktop and mobile", async ({ page }) => {
+  await page.goto("/");
+  const experience = page.getByRole("region", { name: "Experience" });
+  const heading = experience.getByRole("heading", { level: 2 });
+  const firstRole = experience.getByRole("article").first();
+
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    const { x } = await heading.boundingBox();
+    expect((await firstRole.boundingBox()).x).toBeCloseTo(x);
+    expect((await firstRole.getByTestId("timeline").boundingBox()).x).toBeCloseTo(x);
+  }
+});

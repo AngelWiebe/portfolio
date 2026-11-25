@@ -156,7 +156,7 @@ main {
   padding-block: clamp(3.25rem, 7vw, 6.1rem) clamp(3rem, 6vw, 5rem);
 }
 
-.hero-copy, .section-heading {
+.hero-copy, .section-heading, .role-list {
   background: $text-surface;
   border-radius: .5rem;
   box-shadow: 0 0 0 .6rem $text-surface;
@@ -375,7 +375,6 @@ main {
 .other-projects { gap: .7rem; }
 .role-list {
   border-bottom: 1px solid $line;
-  background: $text-surface;
 }
 
 .role {
@@ -384,7 +383,7 @@ main {
   &:hover, &:focus-within { background: linear-gradient(90deg, $lavender, $paper 70%); }
 
   .entry-content {
-    padding: 1rem .45rem;
+    padding: 1rem 0;
     grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr) auto;
     column-gap: 1.5rem;
     > * { grid-column: 2; }
