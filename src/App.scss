@@ -1,17 +1,20 @@
-$ink: #221b2c;
-$muted: #5e5569;
-$accent: #5535a2;
-$lavender: #eee8f8;
-$paper: #fffdf9;
-$text-surface: rgba($paper, .86);
-$line: #ddd7e1;
+$ink: var(--ink);
+$muted: var(--muted);
+$accent: var(--accent);
+$lavender: var(--lavender);
+$paper: var(--paper);
+$text-surface: var(--surface);
+$line: var(--line);
+$section-surface-spread: .6rem;
+$section-divider-gap: 1.9rem;
+$section-divider-gap-mobile: 1.4rem;
 $spectrum: linear-gradient(110deg, #6642b2 3%, #a969b5 58%, #f0a88e);
 $purple-depth: linear-gradient(135deg, #312047, #4a2871 65%, #6a3d82);
 
 main {
   background:
-    radial-gradient(ellipse at 85% 5%, #ebe0fa99, transparent 54%),
-    radial-gradient(ellipse at 12% 8%, #f7e3df99, transparent 44%);
+    radial-gradient(ellipse at 85% 5%, var(--glow-purple), transparent 54%),
+    radial-gradient(ellipse at 12% 8%, var(--glow-peach), transparent 44%);
   background-repeat: no-repeat;
   background-size: 100% 40rem;
 }
@@ -30,7 +33,7 @@ main {
   translate: 0 -180%;
   padding: .6rem 1rem;
   border-radius: .5rem;
-  background: $ink;
+  background: #221b2c;
   color: white;
 
   max-width: calc(100% - 1.5rem);
@@ -44,7 +47,7 @@ main {
   z-index: 10;
   border-bottom: 1px solid $line;
   background: $paper;
-  box-shadow: 0 3px 12px rgba($ink, .07);
+  box-shadow: 0 3px 12px #221b2c12;
 
   &[data-scroll-with-page] { position: static; }
 }
@@ -141,6 +144,15 @@ main {
   svg { flex: none; }
 }
 
+.theme-toggle {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  padding: .4rem;
+  color: $accent;
+
+  &[aria-pressed="true"] { background: $lavender; }
+}
+
 .button-primary {
   background: linear-gradient(125deg, #5831a2, #70358d);
   box-shadow: 0 4px 9px #53288235;
@@ -155,15 +167,21 @@ main {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-  align-items: center;
+  align-items: start;
   gap: clamp(2rem, 7vw, 6rem);
-  padding-block: clamp(3.25rem, 7vw, 6.1rem) clamp(3rem, 6vw, 5rem);
+  padding-block: clamp(3.25rem, 7vw, 6.1rem) $section-divider-gap;
 }
 
-.hero-copy, .section-heading, .role-list {
+.section-heading, .role-list {
   background: $text-surface;
   border-radius: .5rem;
-  box-shadow: 0 0 0 .6rem $text-surface;
+  box-shadow: 0 0 0 $section-surface-spread $text-surface;
+}
+
+.hero-copy {
+  padding: clamp(1rem, 2.4vw, 1.85rem);
+  border-radius: 1.2rem;
+  background: $text-surface;
 }
 
 .eyebrow {
@@ -272,10 +290,16 @@ main {
   }
 }
 
-.work-section, .experience-section { padding-block: 2.5rem 3.65rem; border-top: 1px solid $line; }
+$section-text-inset: clamp(.75rem, 1.5vw, 1.25rem);
+
+.work-section, .experience-section { border-top: 1px solid $line; }
+
+.work-section { padding-block: $section-divider-gap; }
+.experience-section { padding-block: ($section-divider-gap + $section-surface-spread) 3.65rem; }
 
 .section-heading {
   margin-bottom: 1.45rem;
+  padding-inline-start: $section-text-inset;
 
   &::before {
     content: "";
@@ -289,6 +313,12 @@ main {
 
   h2 { margin: 0; font-size: clamp(2rem, 4.2vw, 3.15rem); line-height: 1.08; letter-spacing: -.065em; }
   p { margin: .55rem 0 0; color: $muted; }
+}
+
+.work-section .section-heading {
+  padding: .6rem $section-text-inset;
+  border-radius: .9rem;
+  box-shadow: none;
 }
 
 .featured-grid, .other-projects {
@@ -388,6 +418,7 @@ main {
 
   .entry-content {
     padding: 1rem 0;
+    padding-inline-start: $section-text-inset;
     grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr) auto;
     column-gap: 1.5rem;
     > * { grid-column: 2; }
@@ -398,7 +429,7 @@ main {
 }
 
 .site-footer {
-  background: radial-gradient(ellipse at bottom right, #49275f, transparent 65%), $ink;
+  background: radial-gradient(ellipse at bottom right, #49275f, transparent 65%), #221b2c;
   color: #fcf8ff;
   border-top: 3px solid transparent;
   border-image: $spectrum 1;
@@ -486,7 +517,7 @@ main {
 @media (max-width: 42rem) {
   .page-width { width: calc(100% - 2rem); }
   .hero, .featured-grid, .other-projects, .footer-inner { grid-template-columns: minmax(0, 1fr); }
-  .hero { padding-block: 2.7rem 2.75rem; }
+  .hero { padding-block: 2.7rem $section-divider-gap-mobile; }
   .focus-panel dl {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
@@ -495,7 +526,8 @@ main {
   }
 
   .focus-panel dl > div { padding-block: .45rem 0; }
-  .work-section, .experience-section { padding-block: 2rem 2.5rem; }
+  .work-section { padding-block: $section-divider-gap-mobile; }
+  .experience-section { padding-block: ($section-divider-gap-mobile + $section-surface-spread) 2.5rem; }
 
   .role .entry-content {
     grid-template-columns: minmax(0, 1fr) auto;

@@ -36,8 +36,9 @@ test("keeps the floral backdrop fixed while the content scrolls", async ({ page,
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   const hero = page.getByRole("heading", { level: 1, name: "Angel Wiebe" });
-  const readLayer = () => page.locator("body").evaluate((body) => {
-    const layer = getComputedStyle(body, "::before");
+  const main = page.getByRole("main");
+  const readLayer = () => main.evaluate((element) => {
+    const layer = getComputedStyle(element, "::before");
     return { position: layer.position, inset: layer.inset, image: layer.backgroundImage };
   });
 
@@ -52,6 +53,11 @@ test("keeps the floral backdrop fixed while the content scrolls", async ({ page,
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
   await expect(hero).not.toBeInViewport();
   expect(await readLayer()).toEqual(background);
+
+  await page.keyboard.press("End");
+  await expect(page.getByRole("contentinfo")).toBeInViewport();
+  await expect(main).toHaveCSS("clip-path", "inset(0px)");
+  await expect(page.locator("html")).toHaveCSS("overscroll-behavior-y", "none");
 });
 
 test("switches portfolio languages through keyboard-accessible links", async ({ page }) => {
@@ -118,17 +124,35 @@ test("lets an oversized header scroll on short screens with enlarged text", asyn
   await expect(header).toHaveCSS("position", "sticky");
 });
 
-test("aligns the Experience heading and first timeline row on desktop and mobile", async ({ page }) => {
+test("aligns project cards with the title box and preserves inner padding", async ({ page }) => {
   await page.goto("/");
+  const work = page.getByRole("region", { name: "Selected work" });
   const experience = page.getByRole("region", { name: "Experience" });
-  const heading = experience.getByRole("heading", { level: 2 });
   const firstRole = experience.getByRole("article").first();
+  const featured = work.getByRole("article").first();
+  const other = work.locator(".other-projects").getByRole("article").first();
 
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 900 });
-    const { x } = await heading.boundingBox();
-    expect((await firstRole.boundingBox()).x).toBeCloseTo(x);
-    expect((await firstRole.getByTestId("timeline").boundingBox()).x).toBeCloseTo(x);
+
+    for (const section of [work, experience]) {
+      const headingBox = section.locator(".section-heading");
+      const { x: edge } = await section.boundingBox();
+      expect((await headingBox.boundingBox()).x).toBeCloseTo(edge);
+      const { x: textStart } = await section.getByRole("heading", { level: 2 }).boundingBox();
+      expect(textStart - edge).toBeGreaterThanOrEqual(12);
+    }
+
+    const workHeadingBox = work.locator(".section-heading");
+    const { x: workEdge } = await workHeadingBox.boundingBox();
+    await expect(workHeadingBox).toHaveCSS("box-shadow", "none");
+    expect((await featured.boundingBox()).x).toBeCloseTo(workEdge);
+    expect((await other.boundingBox()).x).toBeCloseTo(workEdge);
+
+    const experienceTitle = experience.getByRole("heading", { level: 2 });
+    expect((await firstRole.boundingBox()).x).toBeCloseTo((await experience.boundingBox()).x);
+    expect((await firstRole.getByTestId("timeline").boundingBox()).x)
+      .toBeCloseTo((await experienceTitle.boundingBox()).x);
   }
 });
 
@@ -151,4 +175,56 @@ test("restores the portfolio language when navigating browser history", async ({
   await expect(page).toHaveURL("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(header.getByRole("link", { name: "EN — English" })).toHaveAttribute("aria-current", "page");
+});
+
+test("follows the system theme and remembers an override across language pages", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Dark mode" });
+  const root = page.locator("html");
+
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(root).toHaveCSS("background-color", "rgb(21, 16, 30)");
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(root).toHaveCSS("background-color", "rgb(249, 247, 244)");
+  await toggle.focus();
+  await page.keyboard.press("Space");
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+
+  await page.getByRole("link", { name: "FR — French" }).click();
+  const frenchToggle = page.getByRole("button", { name: "Mode sombre" });
+  await expect(frenchToggle).toHaveAttribute("aria-pressed", "true");
+  await expect(root).toHaveCSS("background-color", "rgb(21, 16, 30)");
+
+  await page.getByRole("button", { name: "WildBalance", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCSS("background-color", "rgb(34, 26, 48)");
+  await page.keyboard.press("Escape");
+
+  await page.emulateMedia({ colorScheme: "dark" });
+  await frenchToggle.click();
+  await page.reload();
+  await expect(frenchToggle).toHaveAttribute("aria-pressed", "false");
+  await expect(root).toHaveCSS("background-color", "rgb(249, 247, 244)");
+});
+
+test("keeps the toolkit anchored when More about me expands", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const toolkit = page.getByRole("complementary", { name: "What I work with" });
+  const about = page.locator(".hero-about");
+  const toggle = about.getByText("More about me", { exact: true });
+  const titleBox = page.locator(".hero-copy");
+  const { y: top } = await toolkit.boundingBox();
+  expect((await titleBox.boundingBox()).y).toBeCloseTo(top);
+  await expect(titleBox).toHaveCSS("box-shadow", "none");
+
+  await toggle.click();
+  await expect(about.locator("p")).toBeVisible();
+  expect((await toolkit.boundingBox()).y).toBeCloseTo(top);
+
+  await toggle.click();
+  await expect(about.locator("p")).toBeHidden();
+  expect((await toolkit.boundingBox()).y).toBeCloseTo(top);
 });

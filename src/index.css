@@ -1,34 +1,71 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
+  --ink: #221b2c;
+  --muted: #5e5569;
+  --accent: #5535a2;
+  --lavender: #eee8f8;
+  --paper: #fffdf9;
+  --surface: #fffdf9db;
+  --line: #ddd7e1;
+  --canvas: #f9f7f4;
+  --glow-purple: #ebe0fa99;
+  --glow-peach: #f7e3df99;
+  --floral-opacity: .56;
+  --floral-opacity-mobile: .32;
+  overscroll-behavior-y: none;
   scroll-padding-block-start: calc(var(--site-header-height, 0px) + .75rem);
   font-family: Manrope, system-ui, sans-serif;
   font-synthesis: none;
-  color: #221b2c;
-  background: #f9f7f4;
+  color: var(--ink);
+  background: var(--canvas);
   font-weight: 500;
   line-height: 1.6;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --ink: light-dark(#221b2c, #f5edff);
+    --muted: light-dark(#5e5569, #cfc0dc);
+    --accent: light-dark(#5535a2, #dbc0ff);
+    --lavender: light-dark(#eee8f8, #3b2a50);
+    --paper: light-dark(#fffdf9, #221a30);
+    --surface: light-dark(#fffdf9db, #221a30ed);
+    --line: light-dark(#ddd7e1, #605072);
+    --canvas: light-dark(#f9f7f4, #15101e);
+    --glow-purple: light-dark(#ebe0fa99, #422b6188);
+    --glow-peach: light-dark(#f7e3df99, #60354f55);
+  }
+}
+
+:root[data-theme="dark"] { --floral-opacity: .12; --floral-opacity-mobile: .08; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) { --floral-opacity: .12; --floral-opacity-mobile: .08; }
 }
 
 * { box-sizing: border-box; }
 body { margin: 0; }
 
-body::before {
+#main::before {
   content: "";
   position: fixed;
   inset: 0;
   background: url("./assets/lily-backdrop.jpg") center / cover no-repeat;
-  opacity: .56;
+  opacity: var(--floral-opacity);
   pointer-events: none;
+  z-index: -1;
 }
 
-#root { position: relative; }
+#main { clip-path: inset(0); }
 
 @media (max-width: 42rem) {
-  body::before { background-position: right center; opacity: .32; }
+  #main::before { background-position: right center; opacity: var(--floral-opacity-mobile); }
 }
 
 @media (forced-colors: active) {
-  body::before { display: none; }
+  #main::before { display: none; }
 }
 
 a { color: inherit; }
@@ -37,7 +74,7 @@ button:not(:disabled) { cursor: pointer; }
 img { display: block; max-width: 100%; }
 
 :focus-visible {
-  outline: 3px solid #623ac6;
+  outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
